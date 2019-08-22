@@ -1,0 +1,99 @@
+---
+- hosts: localhost
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: setup time
+      file:
+        state: link
+        force: yes
+        src: /usr/share/zoneinfo/{{ timezone }}
+        dest: /etc/localtime
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: setup hosts file
+      template:
+        src: hosts.j2
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: 0644
+      tags:
+        - network
+
+    - name: setup resolv.conf file
+      template:
+        src: resolv.conf.j2
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: 0644
+      tags:
+        - network
+
+    - name: configure dhcpcd to not assign ipv6 addresses
+      lineinfile:
+        path: /etc/dhcpcd.conf
+        line: "{{ item }}"
+      loop:
+        - "noipv6rs"
+        - "noipv6"
+      tags:
+        - network
+
+    - name: setup mirrorlist.conf
+      template:
+        src: mirrorlist.conf.j2
+        dest: /etc/pacman.d/mirrorlist
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: setup fontconfig
+      template:
+        src: fontconfig.j2
+        dest: /etc/fonts/local.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: setup fontconfig symlinks
+      file:
+        state: "{{ item.state }}"
+        force: yes
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: 0644
+      loop:
+        - { src: "/etc/fonts/conf.avail/10-hinting-slight.conf", dest: "/etc/fonts/conf.d/10-hinting-slight.conf", state: "absent" }
+        - { src: "/etc/fonts/conf.avail/10-scale-bitmap-fonts.conf", dest: "/etc/fonts/conf.d/10-scale-bitmap-fonts.conf", state: "absent" }
+        - { src: "/etc/fonts/conf.avail/10-sub-pixel-rgb.conf", dest: "/etc/fonts/conf.d/10-sub-pixel-rgb.conf", state: "absent" }
+        - { src: "/etc/fonts/conf.avail/11-lcdfilter-default.conf", dest: "/etc/fonts/conf.d/11-lcdfilter-default.conf", state: "absent" }
+        - { src: "/etc/fonts/conf.avail/70-no-bitmaps.conf", dest: "/etc/fonts/conf.d/70-no-bitmaps.conf", state: "link" }
+
+    - name: setup freetype
+      template:
+        src: freetype2.sh.j2
+        dest: /etc/profile.d/freetype2.sh
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: setup font and theme and perform few other tweaks on gnome shell
+      become: yes
+      become_user: "{{ user }}"
+      dconf:
+        key: "{{item.key}}"
+        value: "{{item.value}}"
+        state: present
+      loop:
+        - {key: '/org/gnome/desktop/interface/gtk-theme', value: "'{{ gtk_theme }}'"}
+        - {key: '/org/gnome/desktop/interface/font-name', value: "'{{ interface_font }} {{ font_size }}'"}
+        - {key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ document_font }} {{ font_size }}'"}
+        - {key: '/org/gnome/desktop/interface/monospace-font-name', value: "'{{ monospace_font }} {{ font_size }}'"}
+        - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ legacy_title_font }} {{ font_size }}'"}
+        - {key: '/org/gnome/shell/disable-user-extensions', value: 'true'}
