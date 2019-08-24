@@ -89,9 +89,9 @@
         - { src: "/etc/fonts/conf.avail/69-urw-fallback-generics.conf",   dest: "/etc/fonts/conf.d/69-urw-fallback-generics.conf",   state: "link" }
         - { src: "/etc/fonts/conf.avail/69-urw-fallback-specifics.conf",  dest: "/etc/fonts/conf.d/69-urw-fallback-specifics.conf",  state: "link" }
         - { src: "/etc/fonts/conf.avail/69-urw-gothic.conf",              dest: "/etc/fonts/conf.d/69-urw-gothic.conf",              state: "link" }
-        - { src: "/etc/fonts/conf.avail/69-urw-nimbus-mono-ps.conf",      dest: "/etc/fonts/conf.d/69-urw-nimbus-mono-ps.conf",      state: "link" }
-        - { src: "/etc/fonts/conf.avail/69-urw-nimbus-roman.conf",        dest: "/etc/fonts/conf.d/69-urw-nimbus-roman.conf",        state: "link" }
-        - { src: "/etc/fonts/conf.avail/69-urw-nimbus-sans.conf",         dest: "/etc/fonts/conf.d/69-urw-nimbus-sans.conf",         state: "link" }
+        - { src: "/etc/fonts/conf.avail/69-urw-nimbus-mono-ps.conf",      dest: "/etc/fonts/conf.d/69-urw-nimbus-mono-ps.conf",      state: "absent" }
+        - { src: "/etc/fonts/conf.avail/69-urw-nimbus-roman.conf",        dest: "/etc/fonts/conf.d/69-urw-nimbus-roman.conf",        state: "absent" }
+        - { src: "/etc/fonts/conf.avail/69-urw-nimbus-sans.conf",         dest: "/etc/fonts/conf.d/69-urw-nimbus-sans.conf",         state: "absent" }
         - { src: "/etc/fonts/conf.avail/69-urw-p052.conf",                dest: "/etc/fonts/conf.d/69-urw-p052.conf",                state: "link" }
         - { src: "/etc/fonts/conf.avail/69-urw-standard-symbols-ps.conf", dest: "/etc/fonts/conf.d/69-urw-standard-symbols-ps.conf", state: "link" }
         - { src: "/etc/fonts/conf.avail/69-urw-z003.conf",                dest: "/etc/fonts/conf.d/69-urw-z003.conf",                state: "link" }
