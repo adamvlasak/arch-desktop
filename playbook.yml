@@ -43,6 +43,26 @@
       tags:
         - network
 
+    - name: setup locale.conf
+      template:
+        src: locale.conf.j2
+        dest: /etc/locale.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - run locale-gen
+
+    - name: setup locale.gen
+      template:
+        src: locale.gen.j2
+        dest: /etc/locale.gen
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - run locale-gen
+
     - name: setup mirrorlist.conf
       template:
         src: mirrorlist.conf.j2
@@ -112,3 +132,7 @@
         - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'"}
         - {key: '/org/gnome/shell/disable-user-extensions', value: "true"}
         - {key: '/org/gnome/mutter/center-new-windows', value: "true"}
+
+  handlers:
+    - name: run locale-gen
+      command: locale-gen
