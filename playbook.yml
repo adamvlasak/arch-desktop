@@ -69,22 +69,22 @@
         group: root
         mode: 0644
       loop:
-        - { src: "/etc/fonts/conf.avail/20-unhint-small-vera.conf",       dest: "/etc/fonts/conf.d/20-unhint-small-vera.conf",       state: "absent" }
-        - { src: "/etc/fonts/conf.avail/30-metric-aliases.conf",          dest: "/etc/fonts/conf.d/30-metric-aliases.conf",          state: "absent" }
-        - { src: "/etc/fonts/conf.avail/40-nonlatin.conf",                dest: "/etc/fonts/conf.d/40-nonlatin.conf",                state: "absent" }
-        - { src: "/etc/fonts/conf.avail/45-generic.conf",                 dest: "/etc/fonts/conf.d/45-generic.conf",                 state: "link" }
-        - { src: "/etc/fonts/conf.avail/45-latin.conf",                   dest: "/etc/fonts/conf.d/45-latin.conf",                   state: "absent" }
-        - { src: "/etc/fonts/conf.avail/49-sansserif.conf",               dest: "/etc/fonts/conf.d/49-sansserif.conf",               state: "absent" }
-        - { src: "/etc/fonts/conf.avail/50-user.conf",                    dest: "/etc/fonts/conf.d/50-user.conf",                    state: "absent" }
-        - { src: "/etc/fonts/conf.avail/51-local.conf",                   dest: "/etc/fonts/conf.d/51-local.conf",                   state: "link" }
-        - { src: "/etc/fonts/conf.avail/60-generic.conf",                 dest: "/etc/fonts/conf.d/60-generic.conf",                 state: "link" }
-        - { src: "/etc/fonts/conf.avail/60-latin.conf",                   dest: "/etc/fonts/conf.d/60-latin.conf",                   state: "absent" }
-        - { src: "/etc/fonts/conf.avail/65-fonts-persian.conf",           dest: "/etc/fonts/conf.d/65-fonts-persian.conf",           state: "absent" }
-        - { src: "/etc/fonts/conf.avail/65-nonlatin.conf",                dest: "/etc/fonts/conf.d/65-nonlatin.conf",                state: "absent" }
-        - { src: "/etc/fonts/conf.avail/69-unifont.conf",                 dest: "/etc/fonts/conf.d/69-unifont.conf",                 state: "absent" }
-        - { src: "/etc/fonts/conf.avail/70-no-bitmaps.conf",              dest: "/etc/fonts/conf.d/70-no-bitmaps.conf",              state: "link" }
-        - { src: "/etc/fonts/conf.avail/80-delicious.conf",               dest: "/etc/fonts/conf.d/80-delicious.conf",               state: "absent" }
-        - { src: "/etc/fonts/conf.avail/90-synthetic.conf",               dest: "/etc/fonts/conf.d/90-synthetic.conf",               state: "link" }
+        - { src: "/etc/fonts/conf.avail/20-unhint-small-vera.conf", dest: "/etc/fonts/conf.d/20-unhint-small-vera.conf", state: "absent" }
+        - { src: "/etc/fonts/conf.avail/30-metric-aliases.conf",    dest: "/etc/fonts/conf.d/30-metric-aliases.conf",    state: "absent" }
+        - { src: "/etc/fonts/conf.avail/40-nonlatin.conf",          dest: "/etc/fonts/conf.d/40-nonlatin.conf",          state: "absent" }
+        - { src: "/etc/fonts/conf.avail/45-generic.conf",           dest: "/etc/fonts/conf.d/45-generic.conf",           state: "link" }
+        - { src: "/etc/fonts/conf.avail/45-latin.conf",             dest: "/etc/fonts/conf.d/45-latin.conf",             state: "absent" }
+        - { src: "/etc/fonts/conf.avail/49-sansserif.conf",         dest: "/etc/fonts/conf.d/49-sansserif.conf",         state: "absent" }
+        - { src: "/etc/fonts/conf.avail/50-user.conf",              dest: "/etc/fonts/conf.d/50-user.conf",              state: "absent" }
+        - { src: "/etc/fonts/conf.avail/51-local.conf",             dest: "/etc/fonts/conf.d/51-local.conf",             state: "link" }
+        - { src: "/etc/fonts/conf.avail/60-generic.conf",           dest: "/etc/fonts/conf.d/60-generic.conf",           state: "link" }
+        - { src: "/etc/fonts/conf.avail/60-latin.conf",             dest: "/etc/fonts/conf.d/60-latin.conf",             state: "absent" }
+        - { src: "/etc/fonts/conf.avail/65-fonts-persian.conf",     dest: "/etc/fonts/conf.d/65-fonts-persian.conf",     state: "absent" }
+        - { src: "/etc/fonts/conf.avail/65-nonlatin.conf",          dest: "/etc/fonts/conf.d/65-nonlatin.conf",          state: "absent" }
+        - { src: "/etc/fonts/conf.avail/69-unifont.conf",           dest: "/etc/fonts/conf.d/69-unifont.conf",           state: "absent" }
+        - { src: "/etc/fonts/conf.avail/70-no-bitmaps.conf",        dest: "/etc/fonts/conf.d/70-no-bitmaps.conf",        state: "link" }
+        - { src: "/etc/fonts/conf.avail/80-delicious.conf",         dest: "/etc/fonts/conf.d/80-delicious.conf",         state: "absent" }
+        - { src: "/etc/fonts/conf.avail/90-synthetic.conf",         dest: "/etc/fonts/conf.d/90-synthetic.conf",         state: "link" }
 
     - name: setup freetype
       template:
