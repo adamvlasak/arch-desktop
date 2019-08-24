@@ -7,7 +7,7 @@
       file:
         state: link
         force: yes
-        src: /usr/share/zoneinfo/{{ timezone }}
+        src: "/usr/share/zoneinfo/{{ timezone }}"
         dest: /etc/localtime
         owner: root
         group: root
@@ -92,8 +92,12 @@
         state: present
       loop:
         - {key: '/org/gnome/desktop/interface/gtk-theme', value: "'{{ gtk_theme }}'"}
+        - {key: '/org/gnome/desktop/interface/icon-theme', value: "'{{ icon_theme }}'"}
+        - {key: '/org/gnome/desktop/interface/clock-show-seconds', value: "true"}
+        - {key: '/org/gnome/desktop/interface/clock-show-weekday', value: "true"}
         - {key: '/org/gnome/desktop/interface/font-name', value: "'{{ interface_font }} {{ font_size }}'"}
         - {key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ document_font }} {{ font_size }}'"}
         - {key: '/org/gnome/desktop/interface/monospace-font-name', value: "'{{ monospace_font }} {{ font_size }}'"}
         - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ legacy_title_font }} {{ font_size }}'"}
-        - {key: '/org/gnome/shell/disable-user-extensions', value: 'true'}
+        - {key: '/org/gnome/shell/disable-user-extensions', value: "true"}
+        - {key: '/org/gnome/mutter/center-new-windows', value: "true"}

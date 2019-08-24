@@ -29,3 +29,4 @@ legacy_title_font: "Roboto"
 serif_font: "Bookerly"
 
 gtk_theme: "Arc-Dark"
+icon_theme: "Papirus-Dark"
