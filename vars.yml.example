@@ -26,6 +26,7 @@ monospace_font: "Fira Code"
 legacy_title_font: "Roboto"
 
 # firefox reader will use it
+sans_font: "Lato"
 serif_font: "Bookerly"
 
 gtk_theme: "Arc-Dark"
