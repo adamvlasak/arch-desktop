@@ -3,30 +3,28 @@ user: foo
 hostname: bar
 timezone: "Europe/Prague"
 
+# font settings
+sans_font: "Lato"
+serif_font: "Bookerly"
+monospace_font: "Fira Code"
+font_size: 10
+
+# theme settings
+gtk_theme: "Arc-Dark"
+icon_theme: "Papirus-Dark"
+
+# network settings
 dns_primary: 1.1.1.1
 dns_secondary: 1.0.0.1
 
-# truetype:interpreter-version=35  # Classic mode (default in 2.6)
-# truetype:interpreter-version=38  # Infinality mode
-# truetype:interpreter-version=40  # Minimal mode (default in 2.7)
-freetype_mode: 36
-
+# rendering settings
 antialias: "true"
 autohint: "false"
 hinting: "true"
 hintstyle: "hintslight"
 lcdfilter: "lcdlight"
 rgba: "rgb"
-
-font_size: 10
-
-document_font: "Roboto"
-monospace_font: "Fira Code"
-legacy_title_font: "Roboto"
-
-# firefox reader will use it
-sans_font: "Lato"
-serif_font: "Bookerly"
-
-gtk_theme: "Arc-Dark"
-icon_theme: "Papirus-Dark"
+# truetype:interpreter-version=35  # Classic mode (default in 2.6)
+# truetype:interpreter-version=38  # Infinality mode
+# truetype:interpreter-version=40  # Minimal mode (default in 2.7)
+freetype_mode: 36
