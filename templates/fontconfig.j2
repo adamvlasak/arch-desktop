@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
+    <!-- default fonts -->
     <match>
-        <edit mode="prepend" name="family"><string>{{ interface_font }}</string></edit>
+        <edit mode="prepend" name="family"><string>{{ sans_font }}</string></edit>
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>serif</string></test>
@@ -16,9 +17,16 @@
         <test qual="any" name="family"><string>monospace</string></test>
         <edit name="family" mode="assign" binding="same"><string>{{ monospace_font }}</string></edit>
     </match>
+    <!-- /default fonts -->
+
+    <!-- replacements -->
     <match target="pattern">
         <test qual="any" name="family"><string>Cantarell</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ interface_font }}</string></edit>
+        <edit name="family" mode="assign" binding="same"><string>{{ sans_font }}</string></edit>
+    </match>
+    <match target="pattern">
+        <test qual="any" name="family"><string>Helvetica</string></test>
+        <edit name="family" mode="assign" binding="same"><string>{{ sans_font }}</string></edit>
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>Times New Roman</string></test>
@@ -28,6 +36,9 @@
         <test qual="any" name="family"><string>Georgia</string></test>
         <edit name="family" mode="assign" binding="same"><string>{{ serif_font }}</string></edit>
     </match>
+    <!-- /replacements -->
+
+    <!-- rendering settings -->
     <match target="font">
         <edit name="antialias" mode="assign">
             <bool>{{ antialias }}</bool>
@@ -58,4 +69,5 @@
             <const>{{ rgba }}</const>
         </edit>
     </match>
+    <!-- /rendering settings -->
 </fontconfig>
