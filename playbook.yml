@@ -3,16 +3,6 @@
   vars_files:
     - vars.yml
   tasks:
-    - name: setup time
-      file:
-        state: link
-        force: yes
-        src: "/usr/share/zoneinfo/{{ timezone }}"
-        dest: /etc/localtime
-        owner: root
-        group: root
-        mode: 0644
-
     - name: setup hosts file
       template:
         src: hosts.j2
@@ -43,6 +33,28 @@
       tags:
         - network
 
+    - name: setup mirrorlist.conf
+      template:
+        src: mirrorlist.conf.j2
+        dest: /etc/pacman.d/mirrorlist
+        owner: root
+        group: root
+        mode: 0644
+      tags:
+        - network
+
+    - name: setup time
+      file:
+        state: link
+        force: yes
+        src: "/usr/share/zoneinfo/{{ timezone }}"
+        dest: /etc/localtime
+        owner: root
+        group: root
+        mode: 0644
+      tags:
+        - locale
+
     - name: setup locale.conf
       template:
         src: locale.conf.j2
@@ -52,6 +64,8 @@
         mode: 0644
       notify:
         - run locale-gen
+      tags:
+        - locale
 
     - name: setup locale.gen
       template:
@@ -62,14 +76,8 @@
         mode: 0644
       notify:
         - run locale-gen
-
-    - name: setup mirrorlist.conf
-      template:
-        src: mirrorlist.conf.j2
-        dest: /etc/pacman.d/mirrorlist
-        owner: root
-        group: root
-        mode: 0644
+      tags:
+        - locale
 
     - name: setup fontconfig
       template:
@@ -78,6 +86,8 @@
         owner: root
         group: root
         mode: 0644
+      tags:
+        - fonts
 
     - name: setup fontconfig symlinks
       file:
@@ -105,6 +115,8 @@
         - { src: "/etc/fonts/conf.avail/70-no-bitmaps.conf",        dest: "/etc/fonts/conf.d/70-no-bitmaps.conf",        state: "link" }
         - { src: "/etc/fonts/conf.avail/80-delicious.conf",         dest: "/etc/fonts/conf.d/80-delicious.conf",         state: "absent" }
         - { src: "/etc/fonts/conf.avail/90-synthetic.conf",         dest: "/etc/fonts/conf.d/90-synthetic.conf",         state: "link" }
+      tags:
+        - fonts
 
     - name: setup freetype
       template:
@@ -113,6 +125,8 @@
         owner: root
         group: root
         mode: 0644
+      tags:
+        - fonts
 
     - name: setup font and theme and perform few other tweaks on gnome shell
       become: yes
@@ -132,6 +146,8 @@
         - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'"}
         - {key: '/org/gnome/shell/disable-user-extensions', value: "true"}
         - {key: '/org/gnome/mutter/center-new-windows', value: "true"}
+      tags:
+        - fonts
 
   handlers:
     - name: run locale-gen
