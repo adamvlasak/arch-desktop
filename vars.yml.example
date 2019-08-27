@@ -4,7 +4,7 @@ hostname: bar
 timezone: "Europe/Prague"
 
 # font settings
-sans_font: "Lato"
+sans_font: "Fira Sans"
 serif_font: "Bookerly"
 monospace_font: "Fira Code"
 font_size: 10
@@ -21,11 +21,20 @@ dns_secondary: 1.0.0.1
 antialias: "true"
 autohint: "false"
 hinting: "true"
-hintstyle: "hintslight"
+
+# hintnone, hintslight, hintmedium, and hintfull
+hintstyle: "hintmedium"
+
+# lcdlight, lcdlegacy, lcdnone
 lcdfilter: "lcdlight"
-rgba: "rgb"
-dpi: 96
+
+# RGB (most common), BGR, V-RGB (vertical), or V-BGR
+rgba: "auto"
+
+# determine your dpi first
+dpi: auto
+
 # truetype:interpreter-version=35  # Classic mode (default in 2.6)
 # truetype:interpreter-version=38  # Infinality mode
 # truetype:interpreter-version=40  # Minimal mode (default in 2.7)
-freetype_mode: 36
+freetype_mode: 40
