@@ -7,15 +7,15 @@
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>serif</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ serif_font }}</string></edit>
+        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>sans-serif</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ sans_font }}</string></edit>
+        <edit name="family" mode="assign" binding="strong"><string>{{ sans_font }}</string></edit>
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>monospace</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ monospace_font }}</string></edit>
+        <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
     </match>
     <!-- /default fonts -->
 
@@ -26,6 +26,10 @@
     </match>
     <match>
         <test name="family"><string>Courier New</string></test>
+        <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
+    </match>
+    <match>
+        <test name="family"><string>Courier</string></test>
         <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
     </match>
     <match>
@@ -46,51 +50,84 @@
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>Helvetica</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ sans_font }}</string></edit>
+        <edit name="family" mode="assign" binding="strong"><string>{{ sans_font }}</string></edit>
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>Times New Roman</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ serif_font }}</string></edit>
+        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
     </match>
     <match target="pattern">
         <test qual="any" name="family"><string>Georgia</string></test>
-        <edit name="family" mode="assign" binding="same"><string>{{ serif_font }}</string></edit>
+        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
     </match>
     <!-- /replacements -->
 
+    <!-- by default fontconfig assumes any unrecognized font is sans-serif, so -->
+    <!-- the fonts above now have /both/ families. -->
+    <!-- note that "delete" applies to the first match -->
+    <match>
+       <test compare="eq" name="family">
+            <string>sans-serif</string>
+        </test>
+        <test compare="eq" name="family">
+            <string>monospace</string>
+        </test>
+        <edit mode="delete" name="family"/>
+    </match>
+    <match>
+        <test compare="eq" name="family">
+            <string>sans-serif</string>
+        </test>
+        <test compare="eq" name="family">
+            <string>cursive</string>
+        </test>
+        <edit mode="delete" name="family"/>
+    </match>
+    <!-- /fixes -->
+
     <!-- rendering settings -->
     <match target="font">
-        <edit name="antialias" mode="assign">
+        {% if rgba != "auto" %}
+        <edit mode="assign" name="rgba">
+            <const>{{ rgba }}</const>
+        </edit>
+        {% endif %}
+        <edit mode="assign" name="hinting">
+            <bool>{{ hinting }}</bool>
+        </edit>
+        <edit mode="assign" name="hintstyle">
+            <const>{{ hintstyle }}</const>
+        </edit>
+        <edit mode="assign" name="lcdfilter">
+            <const>{{ lcdfilter }}</const>
+        </edit>
+        <edit mode="assign" name="antialias">
             <bool>{{ antialias }}</bool>
         </edit>
     </match>
-    <match target="font">
-        <edit name="autohint" mode="assign">
-            <bool>{{ autohint }}</bool>
-        </edit>
-    </match>
-    <match target="font">
-        <edit name="hinting" mode="assign">
-            <bool>{{ hinting }}</bool>
-        </edit>
-    </match>
-    <match target="font">
-        <edit name="hintstyle" mode="assign">
-            <const>{{ hintstyle }}</const>
-        </edit>
-    </match>
-    <match target="font">
-        <edit name="lcdfilter" mode="assign">
-            <const>{{ lcdfilter }}</const>
-        </edit>
-    </match>
+
     {% if rgba != "auto" %}
     <match target="font">
-        <edit name="rgba" mode="assign">
+        <edit mode="assign" name="rgba">
             <const>{{ rgba }}</const>
         </edit>
     </match>
     {% endif %}
+    <match target="font">
+        <edit mode="assign" name="hinting">
+            <bool>{{ hinting }}</bool>
+        </edit>
+    </match>
+    <match target="font">
+        <edit mode="assign" name="hintstyle">
+            <const>{{ hintstyle }}</const>
+        </edit>
+    </match>
+    <match target="font">
+        <edit mode="assign" name="antialias">
+            <bool>{{ antialias }}</bool>
+        </edit>
+    </match>
     {% if dpi != "auto" %}
     <match target="pattern">
         <edit name="dpi" mode="assign"><double>{{ dpi }}</double></edit>
