@@ -30,6 +30,15 @@ $ make provision
 
 > **Note:** it uses sudo inside `Makefile` so make sure you have sudoers set up. See **visudo**.
 
+## Recommended font packages
+
+```
+ttf-bookerly
+ttf-fira-code
+ttf-fira-sans
+ttf-ms-fonts
+```
+
 ## TODO
 
 - add more dconf stuff related to vanilla minimal gnome shell

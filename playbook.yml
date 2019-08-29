@@ -128,7 +128,6 @@
         - { src: "/etc/fonts/conf.avail/69-urw-p052.conf",                dest: "/etc/fonts/conf.d/69-urw-p052.conf",                state: "absent" }
         - { src: "/etc/fonts/conf.avail/69-urw-standard-symbols-ps.conf", dest: "/etc/fonts/conf.d/69-urw-standard-symbols-ps.conf", state: "absent" }
         - { src: "/etc/fonts/conf.avail/69-urw-z003.conf",                dest: "/etc/fonts/conf.d/69-urw-z003.conf",                state: "absent" }
-
       tags:
         - fonts
 
