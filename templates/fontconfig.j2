@@ -1,89 +1,67 @@
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-    <!-- default fonts -->
-    <match>
-        <edit mode="prepend" name="family"><string>{{ sans_font }}</string></edit>
-    </match>
+    <fontconfig>
+    <!--
+        Accept deprecated 'mono' alias, replacing it with 'monospace'
+    -->
     <match target="pattern">
-        <test qual="any" name="family"><string>serif</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
+        <test qual="any" name="family"><string>mono</string></test>
+        <edit name="family" mode="assign"><string>monospace</string></edit>
     </match>
-    <match target="pattern">
-        <test qual="any" name="family"><string>sans-serif</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ sans_font }}</string></edit>
-    </match>
-    <match target="pattern">
-        <test qual="any" name="family"><string>monospace</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
-    </match>
-    <!-- /default fonts -->
 
-    <!-- replacements -->
-    <match>
-        <test name="family"><string>Consolas</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
-    </match>
-    <match>
-        <test name="family"><string>Courier New</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
-    </match>
-    <match>
-        <test name="family"><string>Courier</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ monospace_font }}</string></edit>
-    </match>
-    <match>
-        <test name="family"><string>Cantarell</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ sans_font }}</string></edit>
-    </match>
-    <match>
-        <test name="family"><string>Georgia</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
-    </match>
-    <match>
-        <test name="family"><string>Times</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
-    </match>
-    <match>
-        <test name="family"><string>Times New Roman</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
-    </match>
+    <!--
+        Names not including any well known alias are given 'sans-serif'
+    -->
     <match target="pattern">
-        <test qual="any" name="family"><string>Helvetica</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ sans_font }}</string></edit>
+        <test qual="all" name="family" compare="not_eq"><string>sans-serif</string></test>
+        <test qual="all" name="family" compare="not_eq"><string>serif</string></test>
+        <test qual="all" name="family" compare="not_eq"><string>monospace</string></test>
+        <edit name="family" mode="append_last"><string>sans-serif</string></edit>
     </match>
-    <match target="pattern">
-        <test qual="any" name="family"><string>Times New Roman</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
-    </match>
-    <match target="pattern">
-        <test qual="any" name="family"><string>Georgia</string></test>
-        <edit name="family" mode="assign" binding="strong"><string>{{ serif_font }}</string></edit>
-    </match>
-    <!-- /replacements -->
 
-    <!-- by default fontconfig assumes any unrecognized font is sans-serif, so -->
-    <!-- the fonts above now have /both/ families. -->
-    <!-- note that "delete" applies to the first match -->
-    <match>
-       <test compare="eq" name="family">
-            <string>sans-serif</string>
-        </test>
-        <test compare="eq" name="family">
-            <string>monospace</string>
-        </test>
-        <edit mode="delete" name="family"/>
-    </match>
-    <match>
-        <test compare="eq" name="family">
-            <string>sans-serif</string>
-        </test>
-        <test compare="eq" name="family">
-            <string>cursive</string>
-        </test>
-        <edit mode="delete" name="family"/>
-    </match>
-    <!-- /fixes -->
+    <!--
+	Alias well known font names to available TrueType fonts.
+	These substitute TrueType faces for similar Type1
+	faces to improve screen appearance.
+    -->
+    <alias>
+        <family>Cantarell</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+        <default><family>sans</family></default>
+    </alias>
+    <alias>
+        <family>Times</family>
+        <prefer><family>{{ serif_font }}</family></prefer>
+        <default><family>serif</family></default>
+    </alias>
+    <alias>
+        <family>Helvetica</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+        <default><family>sans</family></default>
+    </alias>
+    <alias>
+        <family>Courier</family>
+        <prefer><family>{{ monospace_font }}</family></prefer>
+        <default><family>monospace</family></default>
+    </alias>
+
+    <!--
+	Provide required aliases for standard names
+	Do these after the users configuration file so that
+	any aliases there are used preferentially
+    -->
+    <alias>
+        <family>serif</family>
+        <prefer><family>{{ serif_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>sans</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>monospace</family>
+        <prefer><family>{{ monospace_font }}</family></prefer>
+    </alias>
 
     <!-- rendering settings -->
     <match target="font">
