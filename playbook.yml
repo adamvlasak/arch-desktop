@@ -178,9 +178,9 @@
         - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'"}
         - {key: '/org/gnome/shell/disable-user-extensions', value: "true"}
         - {key: '/org/gnome/mutter/center-new-windows', value: "true"}
-      notify:
-        - run fc-cache
+        - {key: '/org/gnome/desktop/sound/event-sounds', value: "false" }
       tags:
+        - gnome
         - fonts
 
   handlers:
