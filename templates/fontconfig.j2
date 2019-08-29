@@ -19,16 +19,17 @@
         <edit name="family" mode="append_last"><string>sans-serif</string></edit>
     </match>
 
+    <!-- hack: replace gnome-shell font Cantarell to match interface font -->
+    <match target="pattern">
+        <test qual="any" name="family"><string>Cantarell</string></test>
+        <edit name="family" mode="assign"><string>{{ sans_font }}</string></edit>
+    </match>
+
     <!--
 	Alias well known font names to available TrueType fonts.
 	These substitute TrueType faces for similar Type1
 	faces to improve screen appearance.
     -->
-    <alias>
-        <family>Cantarell</family>
-        <prefer><family>{{ sans_font }}</family></prefer>
-        <default><family>sans</family></default>
-    </alias>
     <alias>
         <family>Georgia</family>
         <prefer><family>{{ serif_font }}</family></prefer>
