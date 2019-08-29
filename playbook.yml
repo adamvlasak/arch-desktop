@@ -3,6 +3,12 @@
   vars_files:
     - vars.yml
   tasks:
+    - name: install required packages
+      pacman:
+        name: "{{ packages }}"
+        state: present
+      tags:
+        - packages
     - name: setup hosts file
       template:
         src: hosts.j2
@@ -10,6 +16,13 @@
         owner: root
         group: root
         mode: 0644
+      tags:
+        - network
+
+    - name: setup hostname
+      lineinfile:
+        path: /etc/hostname
+        line: "{{ hostname }}"
       tags:
         - network
 
@@ -86,6 +99,8 @@
         owner: root
         group: root
         mode: 0644
+      notify:
+        - run fc-cache
       tags:
         - fonts
 
@@ -128,6 +143,8 @@
         - { src: "/etc/fonts/conf.avail/69-urw-p052.conf",                dest: "/etc/fonts/conf.d/69-urw-p052.conf",                state: "absent" }
         - { src: "/etc/fonts/conf.avail/69-urw-standard-symbols-ps.conf", dest: "/etc/fonts/conf.d/69-urw-standard-symbols-ps.conf", state: "absent" }
         - { src: "/etc/fonts/conf.avail/69-urw-z003.conf",                dest: "/etc/fonts/conf.d/69-urw-z003.conf",                state: "absent" }
+      notify:
+        - run fc-cache
       tags:
         - fonts
 
@@ -138,6 +155,8 @@
         owner: root
         group: root
         mode: 0644
+      notify:
+        - run fc-cache
       tags:
         - fonts
 
@@ -159,9 +178,13 @@
         - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'"}
         - {key: '/org/gnome/shell/disable-user-extensions', value: "true"}
         - {key: '/org/gnome/mutter/center-new-windows', value: "true"}
+      notify:
+        - run fc-cache
       tags:
         - fonts
 
   handlers:
     - name: run locale-gen
       command: locale-gen
+    - name: run fc-cache
+      command: fc-cache -f

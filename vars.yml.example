@@ -38,3 +38,18 @@ dpi: auto
 # truetype:interpreter-version=38  # Infinality mode
 # truetype:interpreter-version=40  # Minimal mode (default in 2.7)
 freetype_mode: 40
+
+packages:
+  - ansible
+  - audacious
+  - evince
+  - git
+  - gnome-podcasts
+  - gnome-shell
+  - meld
+  - tig
+  - tilix
+  - tmux
+  - ttf-fira-code
+  - ttf-fira-sans
+  - ttf-ms-fonts
