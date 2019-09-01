@@ -168,17 +168,22 @@
         value: "{{ item.value }}"
         state: present
       loop:
-        - {key: '/org/gnome/desktop/interface/gtk-theme', value: "'{{ gtk_theme }}'"}
-        - {key: '/org/gnome/desktop/interface/icon-theme', value: "'{{ icon_theme }}'"}
-        - {key: '/org/gnome/desktop/interface/clock-show-seconds', value: "true"}
-        - {key: '/org/gnome/desktop/interface/clock-show-weekday', value: "true"}
-        - {key: '/org/gnome/desktop/interface/font-name', value: "'{{ sans_font }} {{ font_size }}'"}
-        - {key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ sans_font }} {{ font_size }}'"}
-        - {key: '/org/gnome/desktop/interface/monospace-font-name', value: "'{{ monospace_font }} {{ font_size }}'"}
-        - {key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'"}
-        - {key: '/org/gnome/shell/disable-user-extensions', value: "true"}
-        - {key: '/org/gnome/mutter/center-new-windows', value: "true"}
-        - {key: '/org/gnome/desktop/sound/event-sounds', value: "false" }
+        - { key: '/org/gnome/desktop/interface/clock-show-seconds', value: "true" }
+        - { key: '/org/gnome/desktop/interface/clock-show-weekday', value: "true" }
+        - { key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ sans_font }} {{ font_size }}'" }
+        - { key: '/org/gnome/desktop/interface/font-name', value: "'{{ sans_font }} {{ font_size }}'" }
+        - { key: '/org/gnome/desktop/interface/gtk-theme', value: "'{{ gtk_theme }}'" }
+        - { key: '/org/gnome/desktop/interface/icon-theme', value: "'{{ icon_theme }}'" }
+        - { key: '/org/gnome/desktop/interface/monospace-font-name', value: "'{{ monospace_font }} {{ font_size }}'" }
+        - { key: '/org/gnome/desktop/privacy/disable-camera', value: 'false' }
+        - { key: '/org/gnome/desktop/privacy/disable-microphone' , value: 'false' }
+        - { key: '/org/gnome/desktop/privacy/remove-old-temp-files' , value: 'true' }
+        - { key: '/org/gnome/desktop/sound/event-sounds', value: "false" }
+        - { key: '/org/gnome/desktop/wm/preferences/audible-bell', value: 'false' }
+        - { key: '/org/gnome/desktop/wm/preferences/button-layout', value: "'appmenu:minimize,maximize,close'" }
+        - { key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'" }
+        - { key: '/org/gnome/mutter/center-new-windows', value: "true" }
+        - { key: '/org/gnome/shell/disable-user-extensions', value: "true" }
       tags:
         - gnome
         - fonts
