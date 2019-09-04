@@ -17,23 +17,6 @@ icon_theme: "Papirus-Dark"
 dns_primary: 1.1.1.1
 dns_secondary: 1.0.0.1
 
-# rendering settings
-antialias: "true"
-autohint: "false"
-hinting: "true"
-
-# hintnone, hintslight, hintmedium, and hintfull
-hintstyle: "hintmedium"
-
-# lcdlight, lcdlegacy, lcdnone
-lcdfilter: "lcdlight"
-
-# RGB (most common), BGR, V-RGB (vertical), or V-BGR
-rgba: "auto"
-
-# determine your dpi first
-dpi: auto
-
 # truetype:interpreter-version=35  # Classic mode (default in 2.6)
 # truetype:interpreter-version=38  # Infinality mode
 # truetype:interpreter-version=40  # Minimal mode (default in 2.7)

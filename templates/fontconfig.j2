@@ -68,46 +68,4 @@
         <family>monospace</family>
         <prefer><family>{{ monospace_font }}</family></prefer>
     </alias>
-
-    <!-- rendering settings -->
-    <match target="font">
-        {% if rgba != "auto" %}
-        <edit mode="assign" name="rgba">
-            <const>{{ rgba }}</const>
-        </edit>
-        {% endif %}
-        <edit mode="assign" name="hinting">
-            <bool>{{ hinting }}</bool>
-        </edit>
-        <edit mode="assign" name="hintstyle">
-            <const>{{ hintstyle }}</const>
-        </edit>
-        <edit mode="assign" name="lcdfilter">
-            <const>{{ lcdfilter }}</const>
-        </edit>
-        <edit mode="assign" name="antialias">
-            <bool>{{ antialias }}</bool>
-        </edit>
-    </match>
-
-    <match target="font">
-    {% if rgba != "auto" %}
-        <edit mode="assign" name="rgba">
-            <const>{{ rgba }}</const>
-        </edit>
-    {% endif %}
-        <edit mode="assign" name="hinting">
-            <bool>{{ hinting }}</bool>
-        </edit>
-        <edit mode="assign" name="hintstyle">
-            <const>{{ hintstyle }}</const>
-        </edit>
-        <edit mode="assign" name="antialias">
-            <bool>{{ antialias }}</bool>
-        </edit>
-    {% if dpi != "auto" %}
-        <edit name="dpi" mode="assign"><double>{{ dpi }}</double></edit>
-    {% endif %}
-    </match>
-    <!-- /rendering settings -->
 </fontconfig>
