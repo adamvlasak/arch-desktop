@@ -90,32 +90,24 @@
         </edit>
     </match>
 
-    {% if rgba != "auto" %}
     <match target="font">
+    {% if rgba != "auto" %}
         <edit mode="assign" name="rgba">
             <const>{{ rgba }}</const>
         </edit>
-    </match>
     {% endif %}
-    <match target="font">
         <edit mode="assign" name="hinting">
             <bool>{{ hinting }}</bool>
         </edit>
-    </match>
-    <match target="font">
         <edit mode="assign" name="hintstyle">
             <const>{{ hintstyle }}</const>
         </edit>
-    </match>
-    <match target="font">
         <edit mode="assign" name="antialias">
             <bool>{{ antialias }}</bool>
         </edit>
-    </match>
     {% if dpi != "auto" %}
-    <match target="pattern">
         <edit name="dpi" mode="assign"><double>{{ dpi }}</double></edit>
-    </match>
     {% endif %}
+    </match>
     <!-- /rendering settings -->
 </fontconfig>
