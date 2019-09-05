@@ -159,6 +159,9 @@
         - { key: '/org/gnome/desktop/wm/preferences/button-layout', value: "'appmenu:minimize,maximize,close'" }
         - { key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'" }
         - { key: '/org/gnome/mutter/center-new-windows', value: "true" }
+        - { key: '/org/gnome/settings-daemon/plugins/xsettings/antialiasing', value: "'rgba'" }
+        - { key: '/org/gnome/settings-daemon/plugins/xsettings/hinting', value: "'slight'" }
+        - { key: '/org/gnome/settings-daemon/plugins/xsettings/rgba-order', value: "'rgb'" }
         - { key: '/org/gnome/shell/disable-user-extensions', value: "true" }
       tags:
         - gnome
