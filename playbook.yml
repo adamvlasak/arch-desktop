@@ -95,7 +95,7 @@
     - name: setup fontconfig
       template:
         src: fontconfig.j2
-        dest: /etc/fonts/conf.d/99-user.conf
+        dest: /etc/fonts/conf.d/52-user.conf
         owner: root
         group: root
         mode: 0644
@@ -117,6 +117,7 @@
         - { src: "/etc/fonts/conf.avail/10-hinting-slight.conf", dest: "/etc/fonts/conf.d/10-hinting-slight.conf", state: "link" }
         - { src: "/etc/fonts/conf.avail/10-sub-pixel-rgb.conf", dest: "/etc/fonts/conf.d/10-sub-pixel-rgb.conf", state: "link" }
         - { src: "/etc/fonts/conf.avail/11-lcdfilter-default.conf", dest: "/etc/fonts/conf.d/11-lcdfilter-default.conf", state: "link" }
+        - { src: "/etc/fonts/conf.avail/70-no-bitmaps.conf", dest: "/etc/fonts/conf.d/70-no-bitmaps.conf", state: "link" }
       notify:
         - run fc-cache
       tags:
