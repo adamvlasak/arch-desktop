@@ -8,6 +8,7 @@ sans_font: "Fira Sans"
 serif_font: "Bookerly"
 monospace_font: "Fira Code"
 font_size: 10
+dpi: 96
 
 # theme settings
 gtk_theme: "Arc-Dark"
