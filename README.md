@@ -14,29 +14,32 @@ You should have everything needed.
 
 ## Run
 
-To test your work if you make some changes or just want to see what is goin on:
-
 ```
 $ make test
 ```
 
-To provision your OS
-
-**Note:** I prefer not touch touch network so I skip tag `network` so you can hack `Makefile` if you want.
+To test your work if you make some changes and want to know if playbook will run.
 
 ```
 $ make provision
 ```
 
+To provision your OS.
+
+> **Note:** I prefer not touch touch network so I skip tag `network` so you can hack `Makefile` if you want.
 > **Note:** it uses sudo inside `Makefile` so make sure you have sudoers set up. See **visudo**.
 
 ## Recommended font packages
 
 ```
+noto-fonts
 ttf-bookerly
 ttf-fira-code
 ttf-fira-sans
-ttf-ms-fonts
+ttf-font-awesome
+ttf-liberation
+ttf-opensans
+ttf-roboto
 ```
 
 ## TODO
