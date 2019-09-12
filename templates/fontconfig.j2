@@ -31,31 +31,27 @@
         <edit name="family" mode="assign"><string>{{ sans_font }}</string></edit>
     </match>
 
-    <!--
-	Alias well known font names to available TrueType fonts.
-	These substitute TrueType faces for similar Type1
-	faces to improve screen appearance.
-    -->
-    <alias>
-        <family>Helvetica</family>
-        <prefer><family>Arial</family></prefer>
-        <default><family>sans</family></default>
-    </alias>
-    <alias>
-        <family>Times</family>
-        <prefer><family>Times New Roman</family></prefer>
-        <default><family>serif</family></default>
-    </alias>
-    <alias>
-        <family>Courier</family>
-        <prefer><family>{{ monospace_font }}</family></prefer>
-        <default><family>monospace</family></default>
-    </alias>
-    <alias>
-        <family>Consolas</family>
-        <prefer><family>{{ monospace_font }}</family></prefer>
-        <default><family>monospace</family></default>
-    </alias>
+    <!-- hack: evince forced to replace some fonts -->
+    <match target="pattern">
+        <test name="prgname" compare="eq"><string>evince</string></test>
+        <test qual="any" name="family"><string>Times</string></test>
+        <edit name="family" mode="assign"><string>Nimbus Roman</string></edit>
+    </match>
+    <match target="pattern">
+        <test name="prgname" compare="eq"><string>evince</string></test>
+        <test qual="any" name="family"><string>Arial</string></test>
+        <edit name="family" mode="assign"><string>Nimbus Sans</string></edit>
+    </match>
+    <match target="pattern">
+        <test name="prgname" compare="eq"><string>evince</string></test>
+        <test qual="any" name="family"><string>Helvetica</string></test>
+        <edit name="family" mode="assign"><string>Nimbus Sans</string></edit>
+    </match>
+    <match target="pattern">
+        <test name="prgname" compare="eq"><string>evince</string></test>
+        <test qual="any" name="family"><string>Courier</string></test>
+        <edit name="family" mode="assign"><string>{{ monospace_font }}</string></edit>
+    </match>
 
     <!--
 	Provide required aliases for standard names
