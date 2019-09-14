@@ -169,6 +169,27 @@
         - gnome
         - fonts
 
+    - name: ensure critical services are running
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop:
+        - gdm
+        - irqbalance
+        - tlp
+        - tlp-sleep
+        - ufw
+        - zramswap
+
+    - name: mask systemd-rfkill
+      systemd:
+        name: "{{ item }}"
+        masked: yes
+      loop:
+        - systemd-rfkill.service
+        - systemd-rfkill.socket
+
     - name: remove desktop icons
       file:
         path: "{{ item }}"
