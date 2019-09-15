@@ -236,6 +236,10 @@
         - "VDPAU_DRIVER=va_gl"
         - "LIBVA_DRIVER_NAME=iHD"
         - "EDITOR=vim"
+        - 'HISTTIMEFORMAT="%h %d %H:%M:%S "'
+        - "HISTSIZE=10000"
+        - "HISTFILESIZE=10000"
+        - "HISTCONTROL=ignorespace:erasedups"
       tags:
         - environment
 
