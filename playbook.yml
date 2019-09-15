@@ -178,9 +178,13 @@
         - gdm
         - irqbalance
         - tlp
-        - tlp-sleep
         - ufw
         - zramswap
+
+    - name: enable tlp-sleep service
+      systemd:
+        name: tlp-sleep.service
+        enabled: yes
 
     - name: mask systemd-rfkill
       systemd:
@@ -189,6 +193,19 @@
       loop:
         - systemd-rfkill.service
         - systemd-rfkill.socket
+
+    - name: mask some user services
+      become: yes
+      become_user: "{{ user }}"
+      systemd:
+        name: "{{ item }}"
+        scope: user
+        masked: yes
+      loop:
+        - gnome-user-share-webdav.service
+        - rygel.service
+        - gnome-remote-desktop.service
+        - vino-server.service
 
     - name: remove desktop icons
       file:
