@@ -9,6 +9,7 @@
         state: present
       tags:
         - packages
+
     - name: setup hosts file
       template:
         src: hosts.j2
