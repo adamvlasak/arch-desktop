@@ -169,6 +169,21 @@
         - gnome
         - fonts
 
+    - name: remove desktop icons
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /usr/share/applications/avahi-discover.desktop
+        - /usr/share/applications/bssh.desktop
+        - /usr/share/applications/bvnc.desktop
+        - /usr/share/applications/htop.desktop
+        - /usr/share/applications/orca-autostart.desktop
+        - /usr/share/applications/qv4l2.desktop
+        - /usr/share/applications/qvidcap.desktop
+      tags:
+        - gnome
+
     - name: ensure critical services are running
       systemd:
         name: "{{ item }}"
@@ -180,6 +195,8 @@
         - tlp
         - ufw
         - zramswap
+      tags:
+        - services
 
     - name: enable tlp-sleep service
       systemd:
@@ -193,6 +210,8 @@
       loop:
         - systemd-rfkill.service
         - systemd-rfkill.socket
+      tags:
+        - services
 
     - name: mask some user services
       become: yes
@@ -206,18 +225,19 @@
         - rygel.service
         - gnome-remote-desktop.service
         - vino-server.service
+      tags:
+        - services
 
-    - name: remove desktop icons
-      file:
-        path: "{{ item }}"
-        state: absent
+    - name: setup environment variables
+      lineinfile:
+        line: "{{ item }}"
+        path: /etc/environment
       loop:
-        - /usr/share/applications/avahi-discover.desktop
-        - /usr/share/applications/bssh.desktop
-        - /usr/share/applications/bvnc.desktop
-        - /usr/share/applications/htop.desktop
-        - /usr/share/applications/qv4l2.desktop
-        - /usr/share/applications/qvidcap.desktop
+        - "VDPAU_DRIVER=va_gl"
+        - "LIBVA_DRIVER_NAME=iHD"
+        - "EDITOR=vim"
+      tags:
+        - environment
 
   handlers:
     - name: run locale-gen
