@@ -243,8 +243,17 @@
       tags:
         - environment
 
+    - name: make user part of important groups
+      user:
+        name: "{{ user }}"
+        group: "{{ user }}"
+        groups: ["audio", "video", "storage", "optical", "realtime", "wheel"]
+      tags:
+        - user
+
   handlers:
     - name: run locale-gen
       command: locale-gen
+
     - name: run fc-cache
       command: fc-cache -r

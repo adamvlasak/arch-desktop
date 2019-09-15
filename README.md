@@ -18,7 +18,7 @@ You should have everything needed.
 $ make test
 ```
 
-To test your work if you make some changes and want to know if playbook will run.
+To test your work if you make some changes and want to know if playbook will run without syntactic errors.
 
 ```
 $ make provision
@@ -27,7 +27,8 @@ $ make provision
 To provision your OS.
 
 > **Note:** I prefer not touch touch network so I skip tag `network` so you can hack `Makefile` if you want.
-> **Note:** it uses sudo inside `Makefile` so make sure you have sudoers set up. See **visudo**.
+
+> **Note:** It uses sudo inside `Makefile` so make sure you have sudoers set up. See **visudo**.
 
 ## Recommended font packages
 
