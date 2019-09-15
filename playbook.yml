@@ -107,18 +107,18 @@
 
     - name: setup fontconfig symlinks
       file:
-        state: "{{ item.state }}"
+        state: link
         force: yes
-        src: "{{ item.src }}"
-        dest: "{{ item.dest }}"
+        src: "/etc/fonts/conf.avail/{{ item }}"
+        dest: "/etc/fonts/conf.d/{{ item }}"
         owner: root
         group: root
         mode: 0644
       loop:
-        - { src: "/etc/fonts/conf.avail/10-hinting-slight.conf", dest: "/etc/fonts/conf.d/10-hinting-slight.conf", state: "link" }
-        - { src: "/etc/fonts/conf.avail/10-sub-pixel-rgb.conf", dest: "/etc/fonts/conf.d/10-sub-pixel-rgb.conf", state: "link" }
-        - { src: "/etc/fonts/conf.avail/11-lcdfilter-default.conf", dest: "/etc/fonts/conf.d/11-lcdfilter-default.conf", state: "link" }
-        - { src: "/etc/fonts/conf.avail/99-final.conf", dest: "/etc/fonts/conf.d/99-final.conf", state: "link" }
+        - 10-hinting-slight.conf
+        - 10-sub-pixel-rgb.conf
+        - 11-lcdfilter-default.conf
+        - 99-final.conf
       notify:
         - run fc-cache
       tags:
@@ -191,8 +191,10 @@
         state: started
         enabled: yes
       loop:
+        - bluetooth
         - gdm
         - irqbalance
+        - systemd-timesyncd
         - tlp
         - ufw
         - zramswap
