@@ -145,6 +145,8 @@
         value: "{{ item.value }}"
         state: present
       loop:
+        - { key: '/org/gnome/desktop/applications/terminal/exec', value: "'tilix'" }
+        - { key: '/org/gnome/desktop/applications/terminal/exec-arg', value: "'--geometry 120x40'" }
         - { key: '/org/gnome/desktop/interface/clock-show-seconds', value: "true" }
         - { key: '/org/gnome/desktop/interface/clock-show-weekday', value: "true" }
         - { key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ sans_font }} {{ font_size }}'" }
