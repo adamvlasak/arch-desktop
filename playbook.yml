@@ -245,6 +245,7 @@
         - "HISTSIZE=10000"
         - "HISTFILESIZE=10000"
         - "HISTCONTROL=ignorespace:erasedups"
+        - "MOZ_ENABLE_WAYLAND=1"
       tags:
         - environment
 
