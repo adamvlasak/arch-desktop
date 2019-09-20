@@ -211,7 +211,8 @@
     - name: mask systemd-rfkill
       systemd:
         name: "{{ item }}"
-        masked: yes
+        masked: no
+      when: mask_rfkill is defined and mask_rfkill
       loop:
         - systemd-rfkill.service
         - systemd-rfkill.socket
