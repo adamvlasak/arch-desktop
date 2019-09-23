@@ -184,6 +184,8 @@
         - /usr/share/applications/orca-autostart.desktop
         - /usr/share/applications/qv4l2.desktop
         - /usr/share/applications/qvidcap.desktop
+        - /usr/share/applications/zenmap.desktop
+        - /usr/share/applications/zenmap-root.desktop
       tags:
         - gnome
 
@@ -258,12 +260,12 @@
         - user
 
     - name: prepare vim plug directories
+      become: yes
+      become_user: "{{ user }}"
       file:
         path: "{{ item }}"
         state: directory
         recurse: yes
-        owner: "{{ user }}"
-        group: "{{ user }}"
       loop:
         - /home/{{ user }}/.vim/autoload
         - /home/{{ user }}/.vim/plugged
@@ -271,6 +273,8 @@
         - vim
 
     - name: install vim-plug
+      become: yes
+      become_user: "{{ user }}"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: "{{ item  }}"
@@ -283,6 +287,8 @@
         - vim
 
     - name: put plugins into plugged directory
+      become: yes
+      become_user: "{{ user }}"
       git:
         repo: "{{ item }}"
         dest: "/home/{{ user }}/.vim/plugged/{{ item.split('/')[4] }}"
