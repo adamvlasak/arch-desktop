@@ -33,14 +33,10 @@ To provision your OS.
 ## Recommended font packages
 
 ```
-noto-fonts
 ttf-bookerly
 ttf-fira-code
 ttf-fira-sans
-ttf-font-awesome
 ttf-liberation
-ttf-opensans
-ttf-roboto
 ```
 
 ## TODO
