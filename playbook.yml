@@ -257,6 +257,42 @@
       tags:
         - user
 
+    - name: prepare pathogen directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: yes
+        owner: "{{ user }}"
+        group: "{{ user }}"
+      loop:
+        - /home/{{ user }}/.vim/autoload
+        - /home/{{ user }}/.vim/plugged
+      tags:
+        - vim
+
+    - name: install vim-plug
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ item  }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+      when: not ansible_check_mode
+      loop:
+        - /home/{{ user }}/.vim/autoload/plug.vim
+      tags:
+        - vim
+
+    - name: put plugins into plugged directory
+      git:
+        repo: "{{ item }}"
+        dest: "/home/{{ user }}/.vim/plugged/{{ item.split('/')[4] }}"
+        update: yes
+        depth: 1
+      when: vim_plugins is defined and not ansible_check_mode
+      loop: "{{ vim_plugins }}"
+      tags:
+        - vim
+
   handlers:
     - name: run locale-gen
       command: locale-gen
