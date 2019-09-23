@@ -257,7 +257,7 @@
       tags:
         - user
 
-    - name: prepare pathogen directories
+    - name: prepare vim plug directories
       file:
         path: "{{ item }}"
         state: directory
@@ -290,6 +290,18 @@
         depth: 1
       when: vim_plugins is defined and not ansible_check_mode
       loop: "{{ vim_plugins }}"
+      tags:
+        - vim
+
+    - name: provision .vimrc
+      template:
+        src: vimrc.j2
+        dest: "{{ item }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+      loop:
+        - "/home/{{ user }}/.vimrc"
+        - "/root/.vimrc"
       tags:
         - vim
 
