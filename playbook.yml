@@ -246,7 +246,6 @@
         - "HISTSIZE=10000"
         - "HISTFILESIZE=10000"
         - "HISTCONTROL=ignorespace:erasedups"
-        - "MOZ_ENABLE_WAYLAND=1"
       tags:
         - environment
 
@@ -254,7 +253,7 @@
       user:
         name: "{{ user }}"
         group: "{{ user }}"
-        groups: ["audio", "video", "storage", "optical", "realtime", "wheel"]
+        groups: ["audio", "video", "storage", "optical", "wheel"]
       tags:
         - user
 
