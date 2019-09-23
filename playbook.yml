@@ -196,6 +196,7 @@
         enabled: yes
       loop:
         - bluetooth
+        - docker
         - gdm
         - irqbalance
         - systemd-timesyncd
