@@ -25,6 +25,15 @@ mask_rfkill: no
 # 40  # Minimal mode (default in 2.7)
 freetype_mode: 40
 
+vim_plugins:
+  - https://github.com/vim-syntastic/syntastic.git
+  - https://github.com/pearofducks/ansible-vim
+  - https://github.com/leafgarland/typescript-vim
+  - https://github.com/pangloss/vim-javascript
+  - https://github.com/vim-airline/vim-airline
+  - https://github.com/junegunn/fzf
+  - https://github.com/junegunn/fzf.vim
+
 packages:
   - ansible
   - audacious
