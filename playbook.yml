@@ -10,7 +10,7 @@
       tags:
         - packages
 
-    - name: setup ufw default incoming policy
+    - name: setup ufw
       ufw:
         policy: "{{ item.state }}"
         direction: "{{ item.direction }}"
