@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
     <fontconfig>
+{% if dpi is defined and dpi != "auto" %}
     <match target="pattern">
         <edit name="dpi" mode="assign">
             <double>{{ dpi }}</double>
         </edit>
     </match>
+{% endif %}
 
     <!--
         Accept deprecated 'mono' alias, replacing it with 'monospace'
