@@ -10,6 +10,19 @@
       tags:
         - packages
 
+    - name: setup ufw default incoming policy
+      ufw:
+        policy: "{{ item.state }}"
+        direction: "{{ item.direction }}"
+      loop:
+        - { state: "allow", direction: "outgoing" }
+        - { state: "deny", direction: "incoming" }
+        - { state: "deny", direction: "routed" }
+      notify: reload ufw
+      when: ansible_virtualization_type != "docker"
+      tags:
+        - network
+
     - name: setup hosts file
       template:
         src: hosts.j2
