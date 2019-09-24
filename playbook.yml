@@ -237,6 +237,19 @@
       tags:
         - services
 
+    - name: mask some system services
+      systemd:
+        name: "{{ item }}"
+        masked: yes
+        enabled: no
+        state: stopped
+      loop:
+        - "avahi-daemon.service"
+        - "avahi-daemon.socket"
+        - "avahi-dnsconfd.service"
+      tags:
+        - services
+
     - name: setup environment variables
       lineinfile:
         line: "{{ item }}"
