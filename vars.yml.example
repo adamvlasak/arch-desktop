@@ -55,6 +55,7 @@ packages:
   - gnome-keyring
   - gnome-podcasts
   - gnome-shell
+  - go
   - htop
   - iftop
   - iotop
