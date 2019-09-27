@@ -205,8 +205,9 @@
         - /usr/share/applications/orca-autostart.desktop
         - /usr/share/applications/qv4l2.desktop
         - /usr/share/applications/qvidcap.desktop
-        - /usr/share/applications/zenmap.desktop
+        - /usr/share/applications/vim.desktop
         - /usr/share/applications/zenmap-root.desktop
+        - /usr/share/applications/zenmap.desktop
       tags:
         - gnome
 
