@@ -3,6 +3,8 @@ user: foo
 hostname: bar
 timezone: "Europe/Prague"
 
+latop: no
+
 # font settings
 sans_font: "Fira Sans"
 serif_font: "Bookerly"

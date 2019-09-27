@@ -10,6 +10,14 @@
       tags:
         - packages
 
+    - name: install required packages for laptop
+      pacman:
+        name: "{{ packages }}"
+        state: present
+      when: laptop is defined and laptop
+      tags:
+        - packages
+
     - name: setup ufw
       ufw:
         policy: "{{ item.state }}"
@@ -208,15 +216,24 @@
         state: started
         enabled: yes
       loop:
-        - bluetooth
         - dnscrypt-proxy
         - docker
         - gdm
         - irqbalance
         - systemd-timesyncd
-        - tlp
         - ufw
-        - zramswap
+      tags:
+        - services
+
+    - name: ensure critical services are running on laptop
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      when: laptop is defined and laptop
+      loop:
+        - bluetooth
+        - tlp
       tags:
         - services
 
@@ -224,6 +241,9 @@
       systemd:
         name: tlp-sleep.service
         enabled: yes
+      when: laptop is defined and laptop
+      tags:
+        - services
 
     - name: mask some user services
       become: yes
