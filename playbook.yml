@@ -209,6 +209,7 @@
         enabled: yes
       loop:
         - bluetooth
+        - dnscrypt-proxy
         - docker
         - gdm
         - irqbalance
@@ -333,3 +334,6 @@
 
     - name: run fc-cache
       command: fc-cache -r
+
+    - name: reload ufw
+      command: ufw reload

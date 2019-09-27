@@ -34,15 +34,32 @@ vim_plugins:
 
 packages:
   - ansible
+  - arc-gtk-theme
   - audacious
+  - bash-completion
+  - dnscrypt-proxy
+  - docker
   - evince
+  - firefox
+  - flatpak
   - git
+  - glances
   - gnome-podcasts
   - gnome-shell
+  - htop
+  - iftop
+  - iotop
+  - libva-utils
+  - libva-vdpau-driver
   - meld
+  - nautilus
+  - papirus-icon-theme
   - tig
   - tilix
   - tmux
   - ttf-fira-code
   - ttf-fira-sans
-  - ttf-ms-fonts
+  - ttf-liberation
+  - ufw
+  - vdpauinfo
+  - xdg-user-dirs
