@@ -348,6 +348,15 @@
       tags:
         - vim
 
+    - name: provision .gitconfig
+      template:
+        src: gitconfig.j2
+        dest: "/home/{{ user }}/.gitconfig"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+      tags:
+        - git
+
   handlers:
     - name: run locale-gen
       command: locale-gen

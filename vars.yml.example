@@ -1,5 +1,7 @@
 ---
 user: foo
+fullname: "Foo Bar"
+email: foo@bar.baz
 hostname: bar
 timezone: "Europe/Prague"
 
