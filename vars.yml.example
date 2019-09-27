@@ -8,7 +8,7 @@ timezone: "Europe/Prague"
 libva_driver: vdpau
 vdpau_driver: nvidia
 
-latop: no
+laptop: no
 
 # font settings
 sans_font: "Fira Sans"

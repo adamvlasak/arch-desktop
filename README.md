@@ -1,6 +1,6 @@
 # arch-desktop
 
-Sets up my laptop to run arch linux my way ;-)
+Sets up my desktops/laptops to run arch linux my way ;-)
 
 ## Install
 
