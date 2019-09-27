@@ -45,6 +45,7 @@ packages:
   - dnscrypt-proxy
   - docker
   - evince
+  - fd
   - firefox
   - flatpak
   - git
@@ -59,6 +60,7 @@ packages:
   - meld
   - nautilus
   - papirus-icon-theme
+  - ripgrep
   - tig
   - tilix
   - tmux
