@@ -278,8 +278,8 @@
         line: "{{ item }}"
         path: /etc/environment
       loop:
-        - "VDPAU_DRIVER=va_gl"
-        - "LIBVA_DRIVER_NAME=iHD"
+        - "VDPAU_DRIVER={{ vdpau_driver }}"
+        - "LIBVA_DRIVER_NAME={{ libva_driver }}"
         - "EDITOR=vim"
         - 'HISTTIMEFORMAT="%h %d %H:%M:%S "'
         - "HISTSIZE=10000"

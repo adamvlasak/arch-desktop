@@ -3,6 +3,9 @@ user: foo
 hostname: bar
 timezone: "Europe/Prague"
 
+libva_driver: vdpau
+vdpau_driver: nvidia
+
 latop: no
 
 # font settings
