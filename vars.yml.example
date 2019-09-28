@@ -5,6 +5,8 @@ email: foo@bar.baz
 hostname: bar
 timezone: "Europe/Prague"
 
+# libva_driver: iHD
+# vdpau_driver: va_gl
 libva_driver: vdpau
 vdpau_driver: nvidia
 
