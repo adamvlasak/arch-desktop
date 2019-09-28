@@ -42,7 +42,7 @@ ttf-liberation
 ## TODO
 
 - add more dconf stuff related to vanilla minimal gnome shell
-- add firewall settings
-- add packages + from aur
-- add development tools
+- add aur support (compile yay)
+- add vs code from aur
+- install flatpak apps (slack, spotify, ...)
 - work on UI customization
