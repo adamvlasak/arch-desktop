@@ -37,6 +37,7 @@ ttf-bookerly
 ttf-fira-code
 ttf-fira-sans
 ttf-liberation
+ttf-wqy-microhei-ibx (CJK)
 ```
 
 ## TODO
