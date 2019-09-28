@@ -40,7 +40,6 @@ vim_plugins:
   - https://github.com/junegunn/fzf.vim
 
 packages:
-  - adobe-source-han-sans-otc-fonts
   - ansible
   - arc-gtk-theme
   - audacious
