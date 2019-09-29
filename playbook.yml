@@ -202,6 +202,8 @@
         - /usr/share/applications/bssh.desktop
         - /usr/share/applications/bvnc.desktop
         - /usr/share/applications/htop.desktop
+        - /usr/share/applications/links.desktop
+        - /usr/share/applications/mpv.desktop
         - /usr/share/applications/orca-autostart.desktop
         - /usr/share/applications/qv4l2.desktop
         - /usr/share/applications/qvidcap.desktop
