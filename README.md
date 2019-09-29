@@ -38,6 +38,7 @@ ttf-fira-code
 ttf-fira-sans
 ttf-liberation
 ttf-wqy-microhei-ibx (CJK)
+ttf-sil-lateef (arabic)
 ttf-symbola
 ttf-font-awesome
 ```
