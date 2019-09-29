@@ -56,8 +56,10 @@ packages:
   - flatpak
   - git
   - glances
+  - gnome-boxes
   - gnome-keyring
   - gnome-podcasts
+  - gnome-screenshot
   - gnome-shell
   - go
   - htop
