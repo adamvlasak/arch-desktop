@@ -44,7 +44,6 @@ vim_plugins:
 packages:
   - ansible
   - arc-gtk-theme
-  - audacious
   - bash-completion
   - celluloid
   - dnscrypt-proxy
@@ -67,6 +66,7 @@ packages:
   - iotop
   - libva-utils
   - libva-vdpau-driver
+  - lollypop
   - meld
   - nautilus
   - net-tools
