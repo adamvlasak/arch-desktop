@@ -333,6 +333,7 @@
         repo: "{{ item }}"
         dest: "/home/{{ user }}/.vim/plugged/{{ item.split('/')[4] }}"
         update: yes
+        force: yes
         depth: 1
       when: vim_plugins is defined and not ansible_check_mode
       loop: "{{ vim_plugins }}"
