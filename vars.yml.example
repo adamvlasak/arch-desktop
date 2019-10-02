@@ -57,6 +57,31 @@ environment_vars:
   - "HISTFILESIZE=10000"
   - "HISTCONTROL=ignorespace:erasedups"
 
+gnome_dconf_settings:
+  - { key: '/org/gnome/desktop/applications/terminal/exec', value: "'tilix'" }
+  - { key: '/org/gnome/desktop/applications/terminal/exec-arg', value: "'--geometry 120x40'" }
+  - { key: '/org/gnome/desktop/interface/clock-show-seconds', value: "true" }
+  - { key: '/org/gnome/desktop/interface/clock-show-weekday', value: "true" }
+  - { key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: '/org/gnome/desktop/interface/font-name', value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: '/org/gnome/desktop/interface/gtk-theme', value: "'{{ gtk_theme }}'" }
+  - { key: '/org/gnome/desktop/interface/icon-theme', value: "'{{ icon_theme }}'" }
+  - { key: '/org/gnome/desktop/interface/monospace-font-name', value: "'{{ monospace_font }} {{ font_size }}'" }
+  - { key: '/org/gnome/desktop/notifications/show-in-lock-screen', value: "false" }
+  - { key: '/org/gnome/desktop/privacy/disable-camera', value: 'false' }
+  - { key: '/org/gnome/desktop/privacy/disable-microphone' , value: 'false' }
+  - { key: '/org/gnome/desktop/privacy/remove-old-temp-files' , value: 'true' }
+  - { key: '/org/gnome/desktop/search-providers/disable-external', value: "false" }
+  - { key: '/org/gnome/desktop/sound/event-sounds', value: "false" }
+  - { key: '/org/gnome/desktop/wm/preferences/audible-bell', value: 'false' }
+  - { key: '/org/gnome/desktop/wm/preferences/button-layout', value: "'appmenu:minimize,maximize,close'" }
+  - { key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: '/org/gnome/mutter/center-new-windows', value: "true" }
+  - { key: '/org/gnome/settings-daemon/plugins/xsettings/antialiasing', value: "'rgba'" }
+  - { key: '/org/gnome/settings-daemon/plugins/xsettings/hinting', value: "'slight'" }
+  - { key: '/org/gnome/settings-daemon/plugins/xsettings/rgba-order', value: "'rgb'" }
+  - { key: '/org/gnome/shell/disable-user-extensions', value: "true" }
+
 absent_desktop_icons:
   - /usr/share/applications/avahi-discover.desktop
   - /usr/share/applications/bssh.desktop
