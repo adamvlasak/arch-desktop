@@ -309,25 +309,22 @@
       tags:
         - vim
 
-    - name: provision .vimrc
+    - name: provision dotfiles
       template:
-        src: vimrc.j2
-        dest: "{{ item }}"
-        owner: "{{ user }}"
-        group: "{{ user }}"
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: 0644
       loop:
-        - "/home/{{ user }}/.vimrc"
-        - "/root/.vimrc"
+        - { src: "vimrc.j2", dest: "/home/{{ user }}/.vimrc", owner: "{{ user }}", group: "{{ user }}" }
+        - { src: "vimrc.j2", dest: "/root/.vimrc", owner: "root", group: "root" }
+        - { src: "gitconfig.j2", dest: "/home/{{ user }}/.gitconfig", owner: "{{ user }}", group: "{{ user }}" }
+        - { src: "bashrc.j2", dest: "/home/{{ user }}/.bashrc", owner: "{{ user }}", group: "{{ user }}" }
+        - { src: "bash_profile.j2", dest: "/home/{{ user }}/.bash_profile", owner: "{{ user }}", group: "{{ user }}" }
       tags:
         - vim
-
-    - name: provision .gitconfig
-      template:
-        src: gitconfig.j2
-        dest: "/home/{{ user }}/.gitconfig"
-        owner: "{{ user }}"
-        group: "{{ user }}"
-      tags:
+        - bash
         - git
 
   handlers:
