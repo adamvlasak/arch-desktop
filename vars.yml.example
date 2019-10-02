@@ -5,11 +5,6 @@ email: foo@bar.baz
 hostname: bar
 timezone: "Europe/Prague"
 
-# libva_driver: iHD
-# vdpau_driver: va_gl
-libva_driver: vdpau
-vdpau_driver: nvidia
-
 laptop: no
 
 # font settings
@@ -19,18 +14,20 @@ monospace_font: "Fira Code"
 font_size: 10
 dpi: 96
 
-# theme settings
-gtk_theme: "Arc-Dark"
-icon_theme: "Papirus-Dark"
-
-# network settings
-dns_primary: 1.1.1.1
-dns_secondary: 1.0.0.1
+fontconfig_symlinks:
+  - 10-hinting-slight.conf
+  - 10-sub-pixel-rgb.conf
+  - 11-lcdfilter-default.conf
+  - 99-final.conf
 
 # 35  # Classic mode (default in 2.6)
 # 38  # Infinality mode
 # 40  # Minimal mode (default in 2.7)
 freetype_mode: 40
+
+# theme settings
+gtk_theme: "Arc-Dark"
+icon_theme: "Papirus-Dark"
 
 vim_plugins:
   - https://github.com/vim-syntastic/syntastic.git
@@ -40,6 +37,62 @@ vim_plugins:
   - https://github.com/vim-airline/vim-airline
   - https://github.com/junegunn/fzf
   - https://github.com/junegunn/fzf.vim
+
+# network settings
+dns_primary: 1.1.1.1
+dns_secondary: 1.0.0.1
+
+# hw video decoding
+# libva_driver: iHD
+# vdpau_driver: va_gl
+libva_driver: vdpau
+vdpau_driver: nvidia
+
+environment_vars:
+  - "VDPAU_DRIVER={{ vdpau_driver }}"
+  - "LIBVA_DRIVER_NAME={{ libva_driver }}"
+  - "EDITOR=vim"
+  - 'HISTTIMEFORMAT="%h %d %H:%M:%S "'
+  - "HISTSIZE=10000"
+  - "HISTFILESIZE=10000"
+  - "HISTCONTROL=ignorespace:erasedups"
+
+absent_desktop_icons:
+  - /usr/share/applications/avahi-discover.desktop
+  - /usr/share/applications/bssh.desktop
+  - /usr/share/applications/bvnc.desktop
+  - /usr/share/applications/htop.desktop
+  - /usr/share/applications/links.desktop
+  - /usr/share/applications/mpv.desktop
+  - /usr/share/applications/orca-autostart.desktop
+  - /usr/share/applications/qv4l2.desktop
+  - /usr/share/applications/qvidcap.desktop
+  - /usr/share/applications/vim.desktop
+  - /usr/share/applications/zenmap-root.desktop
+  - /usr/share/applications/zenmap.desktop
+
+critical_services:
+  - dnscrypt-proxy
+  - docker
+  - gdm
+  - irqbalance
+  - systemd-timesyncd
+  - ufw
+
+critical_laptop_services:
+  - bluetooth
+  - tlp
+
+masked_system_services:
+  - avahi-daemon.service
+  - avahi-daemon.socket
+  - avahi-dnsconfd.service
+
+masked_user_services:
+  - gnome-user-share-webdav.service
+  - rygel.service
+  - gnome-remote-desktop.service
+  - vino-server.service
 
 packages:
   - ansible

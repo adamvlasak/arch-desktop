@@ -136,10 +136,7 @@
         group: root
         mode: 0644
       loop:
-        - 10-hinting-slight.conf
-        - 10-sub-pixel-rgb.conf
-        - 11-lcdfilter-default.conf
-        - 99-final.conf
+        "{{ fontconfig_symlinks }}"
       notify:
         - run fc-cache
       tags:
@@ -198,18 +195,7 @@
         path: "{{ item }}"
         state: absent
       loop:
-        - /usr/share/applications/avahi-discover.desktop
-        - /usr/share/applications/bssh.desktop
-        - /usr/share/applications/bvnc.desktop
-        - /usr/share/applications/htop.desktop
-        - /usr/share/applications/links.desktop
-        - /usr/share/applications/mpv.desktop
-        - /usr/share/applications/orca-autostart.desktop
-        - /usr/share/applications/qv4l2.desktop
-        - /usr/share/applications/qvidcap.desktop
-        - /usr/share/applications/vim.desktop
-        - /usr/share/applications/zenmap-root.desktop
-        - /usr/share/applications/zenmap.desktop
+        "{{ absent_desktop_icons }}"
       tags:
         - gnome
 
@@ -219,12 +205,7 @@
         state: started
         enabled: yes
       loop:
-        - dnscrypt-proxy
-        - docker
-        - gdm
-        - irqbalance
-        - systemd-timesyncd
-        - ufw
+        "{{ critical_services }}"
       tags:
         - services
 
@@ -235,8 +216,7 @@
         enabled: yes
       when: laptop is defined and laptop
       loop:
-        - bluetooth
-        - tlp
+        "{{ critical_laptop_services }}"
       tags:
         - services
 
@@ -256,10 +236,7 @@
         scope: user
         masked: yes
       loop:
-        - gnome-user-share-webdav.service
-        - rygel.service
-        - gnome-remote-desktop.service
-        - vino-server.service
+        "{{ masked_user_services }}"
       tags:
         - services
 
@@ -270,9 +247,7 @@
         enabled: no
         state: stopped
       loop:
-        - "avahi-daemon.service"
-        - "avahi-daemon.socket"
-        - "avahi-dnsconfd.service"
+        "{{ masked_system_services }}"
       tags:
         - services
 
@@ -281,13 +256,7 @@
         line: "{{ item }}"
         path: /etc/environment
       loop:
-        - "VDPAU_DRIVER={{ vdpau_driver }}"
-        - "LIBVA_DRIVER_NAME={{ libva_driver }}"
-        - "EDITOR=vim"
-        - 'HISTTIMEFORMAT="%h %d %H:%M:%S "'
-        - "HISTSIZE=10000"
-        - "HISTFILESIZE=10000"
-        - "HISTCONTROL=ignorespace:erasedups"
+        "{{ environment_vars }}"
       tags:
         - environment
 
