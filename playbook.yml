@@ -7,14 +7,15 @@
       pacman:
         name: "{{ packages }}"
         state: present
+      when: packages is defined
       tags:
         - packages
 
     - name: install required packages for laptop
       pacman:
-        name: "{{ packages }}"
+        name: "{{ packages_laptop }}"
         state: present
-      when: laptop is defined and laptop
+      when: laptop is defined and laptop and packages_laptop is defined
       tags:
         - packages
 
@@ -45,6 +46,7 @@
       lineinfile:
         path: /etc/hostname
         line: "{{ hostname }}"
+      when: hostname is defined
       tags:
         - network
 
@@ -55,6 +57,7 @@
         owner: root
         group: root
         mode: 0644
+      when: dns_primary is defined
       tags:
         - network
 
@@ -139,6 +142,7 @@
         "{{ fontconfig_symlinks }}"
       notify:
         - run fc-cache
+      when: fontconfig_symlinks is defined
       tags:
         - fonts
 
@@ -164,6 +168,7 @@
         state: present
       loop:
         "{{ gnome_dconf_settings }}"
+      when: gnome_dconf_settings is defined
       tags:
         - gnome
         - fonts
@@ -174,6 +179,7 @@
         state: absent
       loop:
         "{{ absent_desktop_icons }}"
+      when: absent_desktop_icons is defined
       tags:
         - gnome
 
@@ -184,6 +190,7 @@
         enabled: yes
       loop:
         "{{ critical_services }}"
+      when: critical_services is defined
       tags:
         - services
 
@@ -192,7 +199,7 @@
         name: "{{ item }}"
         state: started
         enabled: yes
-      when: laptop is defined and laptop
+      when: laptop is defined and laptop and critical_laptop_services is defined
       loop:
         "{{ critical_laptop_services }}"
       tags:
@@ -215,6 +222,7 @@
         masked: yes
       loop:
         "{{ masked_user_services }}"
+      when: masked_user_services is defined
       tags:
         - services
 
@@ -226,6 +234,7 @@
         state: stopped
       loop:
         "{{ masked_system_services }}"
+      when: masked_system_services is defined
       tags:
         - services
 
@@ -235,6 +244,7 @@
         path: /etc/environment
       loop:
         "{{ environment_vars }}"
+      when: environment_vars is defined
       tags:
         - environment
 
