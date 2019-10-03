@@ -25,10 +25,15 @@
         direction: "{{ item.direction }}"
       loop:
         - { state: "allow", direction: "outgoing" }
-        - { state: "deny", direction: "incoming" }
-        - { state: "deny", direction: "routed" }
+        - { state: "deny",  direction: "incoming" }
+        - { state: "deny",  direction: "routed" }
       notify: reload ufw
       when: ansible_virtualization_type != "docker"
+      tags:
+        - network
+
+    - name: enable ufw
+      command: ufw enable
       tags:
         - network
 
