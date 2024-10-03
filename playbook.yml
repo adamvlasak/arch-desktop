@@ -12,38 +12,6 @@
       tags:
         - packages
 
-    - name: Setup hosts file
-      ansible.builtin.template:
-        src: hosts.j2
-        dest: /etc/hosts
-        owner: root
-        group: root
-        mode: 0644
-      tags:
-        - network
-
-    - name: Setup hostname
-      ansible.builtin.lineinfile:
-        path: /etc/hostname
-        line: "{{ hostname }}"
-        owner: root
-        group: root
-        mode: 0744
-      when: hostname is defined
-      tags:
-        - network
-
-    - name: Setup resolv.conf file
-      ansible.builtin.template:
-        src: resolv.conf.j2
-        dest: /etc/resolv.conf
-        owner: root
-        group: root
-        mode: 0644
-      when: dns_primary is defined
-      tags:
-        - network
-
     - name: Setup time
       ansible.builtin.file:
         state: link
@@ -64,7 +32,7 @@
         group: root
         mode: 0644
       notify:
-        - run locale-gen
+        - Run locale-gen
       tags:
         - locale
 
@@ -76,7 +44,7 @@
         group: root
         mode: 0644
       notify:
-        - run locale-gen
+        - Run locale-gen
       tags:
         - locale
 
@@ -168,8 +136,4 @@
   handlers:
     - name: Run locale-gen
       ansible.builtin.command: locale-gen
-      changed_when: false
-
-    - name: Run fc-cache
-      ansible.builtin.command: fc-cache -r
       changed_when: false
