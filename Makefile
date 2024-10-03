@@ -1,4 +1,4 @@
 provision:
-	sudo ansible-playbook -i hosts playbook.yml --skip-tags network -Dv
+	sudo ansible-playbook -i hosts playbook.yml --diff
 test:
-	ansible-playbook -i hosts playbook.yml -CDv
+	ansible-playbook -i hosts playbook.yml --diff --check
