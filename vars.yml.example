@@ -84,7 +84,6 @@ packages:
   - gnome-tweaks
   - go
   - grub
-  - intel-media-driver
   - intel-ucode
   - irqbalance
   - lame
