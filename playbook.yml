@@ -26,6 +26,8 @@
         name: "{{ item }}"
         state: present
       loop: "{{ locales }}"
+      tags:
+        - locales
 
     - name: Remove desktop icons
       ansible.builtin.file:
@@ -47,8 +49,3 @@
 
     - name: Import vim tasks
       ansible.builtin.import_tasks: tasks/vim.yml
-
-  handlers:
-    - name: Run locale-gen
-      ansible.builtin.command: locale-gen
-      changed_when: false
