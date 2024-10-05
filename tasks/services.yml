@@ -27,6 +27,8 @@
     - services
 
 - name: Ensure user services are running
+  become: true
+  become_user: "{{ user }}"
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: started
