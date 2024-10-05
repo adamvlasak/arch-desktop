@@ -5,8 +5,10 @@
     state: started
     enabled: true
   loop:
-    "{{ critical_services }}"
-  when: critical_services is defined
+    "{{ system_services }}"
+  when:
+    - system_services is defined
+    - system_services is iterable
   tags:
     - services
 
@@ -18,7 +20,9 @@
     state: stopped
   loop:
     "{{ masked_system_services }}"
-  when: masked_system_services is defined
+  when:
+    - masked_system_services is defined
+    - masked_system_services is iterable
   tags:
     - services
 
@@ -30,7 +34,9 @@
     scope: user
   loop:
     "{{ user_services }}"
-  when: critical_services is defined
+  when:
+    - user_services is defined
+    - user_services is iterable
   tags:
     - services
 
@@ -43,6 +49,8 @@
     scope: user
   loop:
     "{{ masked_user_services }}"
-  when: masked_user_services is defined
+  when:
+    - masked_user_services is defined
+    - masked_user_services is iterable
   tags:
     - services

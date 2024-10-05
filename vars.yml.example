@@ -52,12 +52,14 @@ absent_desktop_icons:
   - /usr/share/applications/zenmap-root.desktop
   - /usr/share/applications/zenmap.desktop
 
-critical_services:
+system_services:
   - gdm
   - irqbalance
   - systemd-timesyncd
 
 masked_system_services: []
+
+user_services: []
 
 masked_user_services:
   - gnome-user-share-webdav.service
