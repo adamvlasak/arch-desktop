@@ -1,4 +1,4 @@
 provision:
-	ansible-playbook -i hosts playbook.yml --diff
+	ansible-playbook playbook.yml --diff
 test:
-	ansible-playbook -i hosts playbook.yml --diff --check
+	ansible-playbook playbook.yml --diff --check
