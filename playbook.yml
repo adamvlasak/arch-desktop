@@ -15,6 +15,11 @@
     - name: Import service tasks
       ansible.builtin.import_tasks: tasks/services.yml
 
+    - name: Setup hostname
+      ansible.builtin.hostname:
+        name: "{{ hostname }}"
+        use: systemd
+
     - name: Setup timezone
       community.general.timezone:
         name: "{{ timezone }}"
