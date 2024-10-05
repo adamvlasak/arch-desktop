@@ -8,7 +8,9 @@
       community.general.pacman:
         name: "{{ packages }}"
         state: present
-      when: packages is defined
+      when:
+        - packages is defined
+        - packages is iterable
       tags:
         - packages
 
@@ -42,7 +44,9 @@
         path: "{{ item }}"
         state: absent
       loop: "{{ absent_desktop_icons }}"
-      when: absent_desktop_icons is defined
+      when:
+        - absent_desktop_icons is defined
+        - absent_desktop_icons is iterable
       tags:
         - gnome
 

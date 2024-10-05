@@ -10,8 +10,8 @@
     group: "{{ user }}"
     mode: 0755
   loop:
-    - /home/{{ user }}/.vim/autoload
-    - /home/{{ user }}/.vim/plugged
+    - "/home/{{ user }}/.vim/autoload"
+    - "/home/{{ user }}/.vim/plugged"
   tags:
     - vim
 
