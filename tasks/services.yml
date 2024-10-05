@@ -1,5 +1,5 @@
 ---
-- name: Ensure critical services are running
+- name: services | Ensure critical services are running
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: started
@@ -12,7 +12,7 @@
   tags:
     - services
 
-- name: Mask some system services
+- name: services | Mask some system services
   ansible.builtin.systemd:
     name: "{{ item }}"
     masked: true
@@ -26,7 +26,7 @@
   tags:
     - services
 
-- name: Ensure user services are running
+- name: services | Ensure user services are running
   become: true
   become_user: "{{ user }}"
   ansible.builtin.systemd:
@@ -42,7 +42,7 @@
   tags:
     - services
 
-- name: Mask some user services
+- name: services | Mask some user services
   become: true
   become_user: "{{ user }}"
   ansible.builtin.systemd:
