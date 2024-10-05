@@ -12,41 +12,20 @@
       tags:
         - packages
 
-    - name: Setup time
-      ansible.builtin.file:
-        state: link
-        force: true
-        src: "/usr/share/zoneinfo/{{ timezone }}"
-        dest: /etc/localtime
-        owner: root
-        group: root
-        mode: 0644
-      tags:
-        - locale
+    - name: Import service tasks
+      ansible.builtin.import_tasks: tasks/services.yml
 
-    - name: Setup locale.conf
-      ansible.builtin.template:
-        src: locale.conf.j2
-        dest: /etc/locale.conf
-        owner: root
-        group: root
-        mode: 0644
-      notify:
-        - Run locale-gen
+    - name: Setup timezone
+      community.general.timezone:
+        name: "{{ timezone }}"
       tags:
-        - locale
+        - timezone
 
-    - name: Setup locale.gen
-      ansible.builtin.template:
-        src: locale.gen.j2
-        dest: /etc/locale.gen
-        owner: root
-        group: root
-        mode: 0644
-      notify:
-        - Run locale-gen
-      tags:
-        - locale
+    - name: Setup locales
+      community.general.locale_gen:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ locales }}"
 
     - name: Remove desktop icons
       ansible.builtin.file:
@@ -58,42 +37,6 @@
       tags:
         - gnome
 
-    - name: Ensure critical services are running
-      ansible.builtin.systemd:
-        name: "{{ item }}"
-        state: started
-        enabled: true
-      loop:
-        "{{ critical_services }}"
-      when: critical_services is defined
-      tags:
-        - services
-
-    - name: Mask some user services
-      become: true
-      become_user: "{{ user }}"
-      ansible.builtin.systemd:
-        name: "{{ item }}"
-        scope: user
-        masked: true
-      loop:
-        "{{ masked_user_services }}"
-      when: masked_user_services is defined
-      tags:
-        - services
-
-    - name: Mask some system services
-      ansible.builtin.systemd:
-        name: "{{ item }}"
-        masked: true
-        enabled: false
-        state: stopped
-      loop:
-        "{{ masked_system_services }}"
-      when: masked_system_services is defined
-      tags:
-        - services
-
     - name: Make user part of important groups
       ansible.builtin.user:
         name: "{{ user }}"
@@ -102,36 +45,8 @@
       tags:
         - user
 
-    - name: Prepare vim plug directories
-      become: true
-      become_user: "{{ user }}"
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: directory
-        recurse: true
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: 0755
-      loop:
-        - /home/{{ user }}/.vim/autoload
-        - /home/{{ user }}/.vim/plugged
-      tags:
-        - vim
-
-    - name: Install vim-plug
-      become: true
-      become_user: "{{ user }}"
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ item }}"
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: 0644
-      when: not ansible_check_mode
-      loop:
-        - /home/{{ user }}/.vim/autoload/plug.vim
-      tags:
-        - vim
+    - name: Import vim tasks
+      ansible.builtin.import_tasks: tasks/vim.yml
 
   handlers:
     - name: Run locale-gen
