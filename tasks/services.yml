@@ -4,8 +4,7 @@
     name: "{{ item }}"
     state: started
     enabled: true
-  loop:
-    "{{ system_services }}"
+  loop: "{{ system_services }}"
   when:
     - system_services is defined
     - system_services is iterable
@@ -18,8 +17,7 @@
     masked: true
     enabled: false
     state: stopped
-  loop:
-    "{{ masked_system_services }}"
+  loop: "{{ masked_system_services }}"
   when:
     - masked_system_services is defined
     - masked_system_services is iterable
@@ -34,8 +32,7 @@
     state: started
     enabled: true
     scope: user
-  loop:
-    "{{ user_services }}"
+  loop: "{{ user_services }}"
   when:
     - user_services is defined
     - user_services is iterable
@@ -49,8 +46,7 @@
     name: "{{ item }}"
     masked: true
     scope: user
-  loop:
-    "{{ masked_user_services }}"
+  loop: "{{ masked_user_services }}"
   when:
     - masked_user_services is defined
     - masked_user_services is iterable

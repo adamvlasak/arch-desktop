@@ -41,8 +41,7 @@
       ansible.builtin.file:
         path: "{{ item }}"
         state: absent
-      loop:
-        "{{ absent_desktop_icons }}"
+      loop: "{{ absent_desktop_icons }}"
       when: absent_desktop_icons is defined
       tags:
         - gnome
