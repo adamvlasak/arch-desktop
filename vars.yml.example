@@ -66,45 +66,50 @@ masked_user_services:
   - vino-server.service
 
 packages:
-  - ansible
-  - arc-gtk-theme
-  - bash-completion
+  - btop
   - celluloid
-  - dnscrypt-proxy
-  - docker
-  - eog
   - evince
-  - fd
+  - ffmpeg
   - firefox
-  - flatpak
+  - fish
+  - flac
+  - gdm
   - git
-  - glances
-  - gnome-boxes
-  - gnome-keyring
+  - gnome-calculator
   - gnome-podcasts
-  - gnome-screenshot
   - gnome-shell
+  - gnome-terminal
+  - gnome-tweaks
   - go
-  - htop
-  - iftop
-  - iotop
-  - libva-utils
-  - libva-vdpau-driver
-  - lollypop
-  - meld
+  - grub
+  - intel-media-driver
+  - intel-ucode
+  - irqbalance
+  - lame
+  - make
+  - man-db
+  - man-pages
+  - mc
+  - mesa
   - nautilus
   - net-tools
+  - networkmanager
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
   - openssh
   - openssl
   - papirus-icon-theme
-  - ripgrep
+  - plymouth
+  - shortwave
+  - signal-desktop
+  - stow
+  - sudo
   - tig
-  - tilix
   - tmux
   - ttf-fira-code
-  - ttf-fira-sans
-  - ttf-liberation
-  - ufw
-  - vdpauinfo
-  - xdg-user-dirs
-  - youtube-dl
+  - vim
+  - vulkan-intel
+  - vulkan-mesa-layers
+  - vulkan-tools
+  - wget
