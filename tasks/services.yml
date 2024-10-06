@@ -1,5 +1,5 @@
 ---
-- name: services | Ensure critical services are running
+- name: services | Ensure system services are running
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: started

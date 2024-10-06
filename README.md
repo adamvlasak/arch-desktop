@@ -2,6 +2,10 @@
 
 Sets up my desktops/laptops to run arch linux my way ;-)
 
+## Required packages
+
+- `python-psutil`
+
 ## Install
 
 The whole thing is orchestrated by `ansible` so please have it installed.

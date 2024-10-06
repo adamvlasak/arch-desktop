@@ -18,4 +18,13 @@
   tags:
     - gnome
 
-# TODO: dconf
+- name: Configure gnome using dconf
+  become: true
+  become_user: "{{ user }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ gnome_dconf_settings }}"
+  tags:
+    - gnome
