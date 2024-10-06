@@ -1,0 +1,21 @@
+---
+- name: Make user part of important groups
+  ansible.builtin.user:
+    name: "{{ user }}"
+    group: "{{ user }}"
+    groups: ["audio", "video", "storage", "optical", "wheel"]
+  tags:
+    - user
+
+- name: Remove desktop icons
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ absent_desktop_icons }}"
+  when:
+    - absent_desktop_icons is defined
+    - absent_desktop_icons is iterable
+  tags:
+    - gnome
+
+# TODO: dconf

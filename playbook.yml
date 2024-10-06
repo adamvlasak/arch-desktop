@@ -4,59 +4,14 @@
   vars_files:
     - vars.yml
   tasks:
-    - name: Install required packages
-      community.general.pacman:
-        name: "{{ packages }}"
-        state: present
-      when:
-        - packages is defined
-        - packages is iterable
-      tags:
-        - packages
+    - name: Import system tasks
+      ansible.builtin.import_tasks: tasks/system.yml
 
     - name: Import service tasks
       ansible.builtin.import_tasks: tasks/services.yml
 
-    - name: Setup hostname
-      ansible.builtin.hostname:
-        name: "{{ hostname }}"
-        use: systemd
-
-    - name: Setup timezone
-      community.general.timezone:
-        name: "{{ timezone }}"
-      tags:
-        - timezone
-
-    - name: Setup locales
-      community.general.locale_gen:
-        name: "{{ item }}"
-        state: present
-      loop: "{{ locales }}"
-      when:
-        - locales is defined
-        - locales is iterable
-      tags:
-        - locales
-
-    - name: Remove desktop icons
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: absent
-      loop: "{{ absent_desktop_icons }}"
-      when:
-        - absent_desktop_icons is defined
-        - absent_desktop_icons is iterable
-      tags:
-        - gnome
-
-    - name: Make user part of important groups
-      ansible.builtin.user:
-        name: "{{ user }}"
-        group: "{{ user }}"
-        groups: ["audio", "video", "storage", "optical", "wheel"]
-      tags:
-        - user
+    - name: Import user tasks
+      ansible.builtin.import_tasks: tasks/user.yml
 
     - name: Import vim tasks
       ansible.builtin.import_tasks: tasks/vim.yml
