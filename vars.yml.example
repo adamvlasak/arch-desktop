@@ -75,6 +75,7 @@ packages:
   - btop
   - celluloid
   - evince
+  - fd
   - ffmpeg
   - firefox
   - fish
@@ -106,6 +107,7 @@ packages:
   - openssl
   - papirus-icon-theme
   - plymouth
+  - ripgrep
   - shortwave
   - signal-desktop
   - stow
