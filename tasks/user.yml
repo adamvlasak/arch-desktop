@@ -3,7 +3,7 @@
   ansible.builtin.user:
     name: "{{ user }}"
     group: "{{ user }}"
-    groups: ["audio", "video", "storage", "optical", "wheel"]
+    groups: "{{ user_groups }}"
   tags:
     - user
 

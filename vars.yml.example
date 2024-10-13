@@ -1,5 +1,6 @@
 ---
 user: jdoe
+user_groups: ["wheel"]
 hostname: hostname
 timezone: "Europe/Vienna"
 
