@@ -60,7 +60,6 @@ absent_desktop_icons:
 system_services:
   - gdm
   - irqbalance
-  - systemd-timesyncd
 
 masked_system_services: []
 
