@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <!--
+    Accept deprecated 'mono' alias, replacing it with 'monospace'
+    -->
+    <match target="pattern">
+        <test qual="any" name="family"><string>mono</string></test>
+        <edit name="family" mode="assign"><string>monospace</string></edit>
+    </match>
+
+    <alias>
+        <family>serif</family>
+        <prefer><family>{{ serif_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>sans</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>sans-serif</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>monospace</family>
+        <prefer><family>{{ monospace_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>cursive</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>fantasy</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
+    </alias>
+</fontconfig>

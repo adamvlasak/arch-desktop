@@ -7,6 +7,17 @@
   tags:
     - user
 
+- name: Configure fontconfig
+  ansible.builtin.template:
+    src: fontconfig.j2
+    dest: "/home/{{ user }}/.fonts.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  tags:
+    - gnome
+    - fonts
+
 - name: Remove desktop icons
   ansible.builtin.file:
     path: "{{ item }}"
