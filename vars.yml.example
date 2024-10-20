@@ -1,46 +1,13 @@
 ---
-user: foo
-fullname: "Foo Bar"
-email: foo@bar.baz
-hostname: bar
-timezone: "Europe/Prague"
+user: jdoe
+user_groups: ["wheel", "audio", "video", "tty", "input", "storage", "optical"]
+hostname: hostname
+timezone: "Europe/Vienna"
 
-laptop: no
-
-# font settings
-sans_font: "Fira Sans"
-serif_font: "Bookerly"
+sans_font: "Cantarell"
+serif_font: "Libertinus Serif"
 monospace_font: "Fira Code"
 font_size: 10
-dpi: 96
-
-fontconfig_symlinks:
-  - 10-hinting-slight.conf
-  - 10-sub-pixel-rgb.conf
-  - 11-lcdfilter-default.conf
-  - 99-final.conf
-
-# 35  # Classic mode (default in 2.6)
-# 38  # Infinality mode
-# 40  # Minimal mode (default in 2.7)
-freetype_mode: 40
-
-# theme settings
-gtk_theme: "Arc-Dark"
-icon_theme: "Papirus-Dark"
-
-vim_plugins:
-  - https://github.com/vim-syntastic/syntastic.git
-  - https://github.com/pearofducks/ansible-vim
-  - https://github.com/leafgarland/typescript-vim
-  - https://github.com/pangloss/vim-javascript
-  - https://github.com/vim-airline/vim-airline
-  - https://github.com/junegunn/fzf
-  - https://github.com/junegunn/fzf.vim
-
-# network settings
-dns_primary: 1.1.1.1
-dns_secondary: 1.0.0.1
 
 # hw video decoding
 # libva_driver: iHD
@@ -48,117 +15,90 @@ dns_secondary: 1.0.0.1
 libva_driver: vdpau
 vdpau_driver: nvidia
 
+locales:
+  - en_US.UTF-8
+  - cs_CZ.UTF-8
+
 environment_vars:
   - "VDPAU_DRIVER={{ vdpau_driver }}"
   - "LIBVA_DRIVER_NAME={{ libva_driver }}"
-  - "EDITOR=vim"
-  - 'HISTTIMEFORMAT="%h %d %H:%M:%S "'
-  - "HISTSIZE=10000"
-  - "HISTFILESIZE=10000"
-  - "HISTCONTROL=ignorespace:erasedups"
 
 gnome_dconf_settings:
-  - { key: '/org/gnome/desktop/applications/terminal/exec', value: "'tilix'" }
-  - { key: '/org/gnome/desktop/applications/terminal/exec-arg', value: "'--geometry 120x40'" }
-  - { key: '/org/gnome/desktop/interface/clock-show-seconds', value: "true" }
-  - { key: '/org/gnome/desktop/interface/clock-show-weekday', value: "true" }
-  - { key: '/org/gnome/desktop/interface/document-font-name', value: "'{{ sans_font }} {{ font_size }}'" }
-  - { key: '/org/gnome/desktop/interface/font-name', value: "'{{ sans_font }} {{ font_size }}'" }
-  - { key: '/org/gnome/desktop/interface/gtk-theme', value: "'{{ gtk_theme }}'" }
-  - { key: '/org/gnome/desktop/interface/icon-theme', value: "'{{ icon_theme }}'" }
-  - { key: '/org/gnome/desktop/interface/monospace-font-name', value: "'{{ monospace_font }} {{ font_size }}'" }
-  - { key: '/org/gnome/desktop/notifications/show-in-lock-screen', value: "false" }
-  - { key: '/org/gnome/desktop/privacy/disable-camera', value: 'false' }
-  - { key: '/org/gnome/desktop/privacy/disable-microphone' , value: 'false' }
-  - { key: '/org/gnome/desktop/privacy/remove-old-temp-files' , value: 'true' }
-  - { key: '/org/gnome/desktop/search-providers/disable-external', value: "false" }
-  - { key: '/org/gnome/desktop/sound/event-sounds', value: "false" }
-  - { key: '/org/gnome/desktop/wm/preferences/audible-bell', value: 'false' }
-  - { key: '/org/gnome/desktop/wm/preferences/button-layout', value: "'appmenu:minimize,maximize,close'" }
-  - { key: '/org/gnome/desktop/wm/preferences/titlebar-font', value: "'{{ sans_font }} {{ font_size }}'" }
-  - { key: '/org/gnome/mutter/center-new-windows', value: "true" }
-  - { key: '/org/gnome/settings-daemon/plugins/xsettings/antialiasing', value: "'rgba'" }
-  - { key: '/org/gnome/settings-daemon/plugins/xsettings/hinting', value: "'slight'" }
-  - { key: '/org/gnome/settings-daemon/plugins/xsettings/rgba-order', value: "'rgb'" }
-  - { key: '/org/gnome/shell/disable-user-extensions', value: "true" }
+  - { key: "/org/gnome/desktop/interface/clock-show-seconds", value: "false" }
+  - { key: "/org/gnome/desktop/interface/clock-show-weekday", value: "true" }
+  - { key: "/org/gnome/desktop/interface/document-font-name", value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/desktop/interface/font-name", value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/desktop/interface/monospace-font-name", value: "'{{ monospace_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/desktop/notifications/show-in-lock-screen", value: "false" }
+  - { key: "/org/gnome/desktop/privacy/disable-camera", value: "true" }
+  - { key: "/org/gnome/desktop/privacy/disable-microphone", value: "false" }
+  - { key: "/org/gnome/desktop/privacy/remove-old-temp-files", value: "true" }
+  - { key: "/org/gnome/desktop/search-providers/disable-external", value: "false" }
+  - { key: "/org/gnome/desktop/sound/event-sounds", value: "false" }
+  - { key: "/org/gnome/desktop/wm/preferences/audible-bell", value: "false" }
+  - { key: "/org/gnome/desktop/wm/preferences/button-layout", value: "'appmenu:close'" }
+  - { key: "/org/gnome/desktop/wm/preferences/titlebar-font", value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/mutter/center-new-windows", value: "true" }
+  - { key: "/org/gnome/shell/disable-user-extensions", value: "true" }
 
-absent_desktop_icons:
-  - /usr/share/applications/avahi-discover.desktop
-  - /usr/share/applications/bssh.desktop
-  - /usr/share/applications/bvnc.desktop
-  - /usr/share/applications/htop.desktop
-  - /usr/share/applications/links.desktop
-  - /usr/share/applications/mpv.desktop
-  - /usr/share/applications/orca-autostart.desktop
-  - /usr/share/applications/qv4l2.desktop
-  - /usr/share/applications/qvidcap.desktop
-  - /usr/share/applications/vim.desktop
-  - /usr/share/applications/zenmap-root.desktop
-  - /usr/share/applications/zenmap.desktop
+absent_desktop_icons: []
 
-critical_services:
-  - dnscrypt-proxy
-  - docker
+system_services:
   - gdm
   - irqbalance
-  - systemd-timesyncd
-  - ufw
 
-critical_laptop_services:
-  - bluetooth
-  - tlp
+masked_system_services: []
 
-masked_system_services:
-  - avahi-daemon.service
-  - avahi-daemon.socket
-  - avahi-dnsconfd.service
+user_services: []
 
-masked_user_services:
-  - gnome-user-share-webdav.service
-  - rygel.service
-  - gnome-remote-desktop.service
-  - vino-server.service
+masked_user_services: []
 
 packages:
-  - ansible
-  - arc-gtk-theme
-  - bash-completion
+  - btop
   - celluloid
-  - dnscrypt-proxy
-  - docker
-  - eog
   - evince
   - fd
+  - ffmpeg
   - firefox
-  - flatpak
+  - fish
+  - flac
+  - gdm
   - git
-  - glances
-  - gnome-boxes
-  - gnome-keyring
+  - gnome-calculator
   - gnome-podcasts
-  - gnome-screenshot
   - gnome-shell
+  - gnome-terminal
+  - gnome-tweaks
   - go
-  - htop
-  - iftop
-  - iotop
-  - libva-utils
-  - libva-vdpau-driver
-  - lollypop
-  - meld
+  - grub
+  - intel-ucode
+  - irqbalance
+  - lame
+  - make
+  - man-db
+  - man-pages
+  - mc
+  - mesa
   - nautilus
   - net-tools
+  - networkmanager
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
   - openssh
   - openssl
   - papirus-icon-theme
+  - plymouth
   - ripgrep
+  - shortwave
+  - signal-desktop
+  - stow
+  - sudo
   - tig
-  - tilix
   - tmux
   - ttf-fira-code
-  - ttf-fira-sans
-  - ttf-liberation
-  - ufw
-  - vdpauinfo
-  - xdg-user-dirs
-  - youtube-dl
+  - vim
+  - vulkan-intel
+  - vulkan-mesa-layers
+  - vulkan-tools
+  - wget

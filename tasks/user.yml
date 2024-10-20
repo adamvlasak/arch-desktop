@@ -1,0 +1,42 @@
+---
+- name: Make user part of important groups
+  ansible.builtin.user:
+    name: "{{ user }}"
+    group: "{{ user }}"
+    groups: "{{ user_groups }}"
+  become: true
+  tags:
+    - user
+
+- name: Configure fontconfig
+  ansible.builtin.template:
+    src: fontconfig.j2
+    dest: "/home/{{ user }}/.fonts.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  tags:
+    - gnome
+    - fonts
+
+- name: Remove desktop icons
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ absent_desktop_icons }}"
+  when:
+    - absent_desktop_icons is defined
+    - absent_desktop_icons is iterable
+  tags:
+    - gnome
+
+- name: Configure gnome using dconf
+  become: true
+  become_user: "{{ user }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ gnome_dconf_settings }}"
+  tags:
+    - gnome

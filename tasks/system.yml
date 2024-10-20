@@ -1,0 +1,32 @@
+---
+- name: Install required packages
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  when:
+    - packages is defined
+    - packages is iterable
+  tags:
+    - packages
+
+- name: Setup hostname
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+    use: systemd
+
+- name: Setup timezone
+  community.general.timezone:
+    name: "{{ timezone }}"
+  tags:
+    - timezone
+
+- name: Setup locales
+  community.general.locale_gen:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ locales }}"
+  when:
+    - locales is defined
+    - locales is iterable
+  tags:
+    - locales

@@ -1,0 +1,54 @@
+---
+- name: services | Ensure system services are running
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: "{{ system_services }}"
+  when:
+    - system_services is defined
+    - system_services is iterable
+  tags:
+    - services
+
+- name: services | Mask some system services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    masked: true
+    enabled: false
+    state: stopped
+  loop: "{{ masked_system_services }}"
+  when:
+    - masked_system_services is defined
+    - masked_system_services is iterable
+  tags:
+    - services
+
+- name: services | Ensure user services are running
+  become: true
+  become_user: "{{ user }}"
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: user
+  loop: "{{ user_services }}"
+  when:
+    - user_services is defined
+    - user_services is iterable
+  tags:
+    - services
+
+- name: services | Mask some user services
+  become: true
+  become_user: "{{ user }}"
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    masked: true
+    scope: user
+  loop: "{{ masked_user_services }}"
+  when:
+    - masked_user_services is defined
+    - masked_user_services is iterable
+  tags:
+    - services
