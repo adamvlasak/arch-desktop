@@ -4,6 +4,7 @@
     name: "{{ user }}"
     group: "{{ user }}"
     groups: "{{ user_groups }}"
+  become: true
   tags:
     - user
 
