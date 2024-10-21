@@ -20,15 +20,30 @@
     - fonts
 
 - name: Remove desktop icons
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: absent
-  loop: "{{ absent_desktop_icons }}"
   when:
     - absent_desktop_icons is defined
     - absent_desktop_icons is iterable
   tags:
     - gnome
+    - desktop-icons
+  block:
+    - name: "Copy desktop icon to .local/share/applications"
+      ansible.builtin.copy:
+        src: "/usr/share/applications/{{ item }}"
+        dest: "/home/{{ user }}/.local/share/applications/{{ item }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0644
+        remote_src: true
+      loop: "{{ absent_desktop_icons }}"
+
+    - name: "Set icon to be hidden"
+      ansible.builtin.lineinfile:
+        path: "/home/{{ user }}/.local/share/applications/{{ item }}"
+        line: "NoDisplay=true"
+        regex: "^NoDisplay=true"
+        state: "present"
+      loop: "{{ absent_desktop_icons }}"
 
 - name: Configure gnome using dconf
   become: true
