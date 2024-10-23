@@ -1,18 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
-    <!-- Accept deprecated 'mono' alias, replacing it with 'monospace' -->
-    <match target="pattern">
-        <test qual="any" name="family"><string>mono</string></test>
-        <edit name="family" mode="assign"><string>monospace</string></edit>
-    </match>
-
-    <!-- Accept deprecated 'sans' alias, replacing it with 'sans-serif' -->
-    <match target="pattern">
-        <test qual="any" name="family"><string>sans</string></test>
-        <edit name="family" mode="assign"><string>sans-serif</string></edit>
-    </match>
-
     <!-- Aliases for commonly used MS fonts. -->
     <match>
       <test name="family"><string>Arial</string></test>
@@ -74,6 +62,10 @@
     <alias>
         <family>serif</family>
         <prefer><family>{{ serif_font }}</family></prefer>
+    </alias>
+    <alias>
+        <family>sans</family>
+        <prefer><family>{{ sans_font }}</family></prefer>
     </alias>
     <alias>
         <family>sans-serif</family>
