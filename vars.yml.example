@@ -42,6 +42,8 @@ gnome_dconf_settings:
   - { key: "/org/gnome/mutter/center-new-windows", value: "true" }
   - { key: "/org/gnome/shell/disable-user-extensions", value: "true" }
 
+fontconfig_symlinks: []
+
 absent_desktop_icons: []
 
 system_services:
