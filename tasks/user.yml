@@ -27,7 +27,20 @@
     mode: 0644
   notify: Generate fontconfig cache
   tags:
-    - gnome
+    - fonts
+
+- name: Create fontconfig preset symlinks
+  ansible.builtin.file:
+    src: "/usr/share/fontconfig/conf.default/{{ item }}"
+    dest: "/etc/fonts/conf.d/{{ item }}"
+    state: link
+    force: true
+  notify: Generate fontconfig cache
+  loop: "{{ fontconfig_symlinks }}"
+  when:
+    - fontconfig_symlinks is defined
+    - fontconfig_symlinks is iterable
+  tags:
     - fonts
 
 - name: Remove desktop icons
