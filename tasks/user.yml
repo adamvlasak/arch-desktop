@@ -8,10 +8,20 @@
   tags:
     - user
 
+- name: Prepare .config/fontconfig
+  ansible.builtin.file:
+    path: "/home/{{ user }}/.config/fontconfig"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  tags:
+    - fonts
+
 - name: Configure fontconfig
   ansible.builtin.template:
     src: fontconfig.j2
-    dest: "/home/{{ user }}/.fonts.conf"
+    dest: "/home/{{ user }}/.config/fontconfig/fonts.conf"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0644
