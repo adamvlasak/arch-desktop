@@ -10,7 +10,7 @@
 
 - name: Prepare .config/fontconfig
   ansible.builtin.file:
-    path: "/home/{{ user }}/.config/fontconfig"
+    path: "{{ user_home }}/.config/fontconfig"
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
@@ -21,7 +21,7 @@
 - name: Configure fontconfig
   ansible.builtin.template:
     src: fontconfig.j2
-    dest: "/home/{{ user }}/.config/fontconfig/fonts.conf"
+    dest: "{{ user_home }}/.config/fontconfig/fonts.conf"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0644
@@ -54,7 +54,7 @@
     - name: "Copy desktop icon to .local/share/applications"
       ansible.builtin.copy:
         src: "/usr/share/applications/{{ item }}"
-        dest: "/home/{{ user }}/.local/share/applications/{{ item }}"
+        dest: "{{ user_home }}/.local/share/applications/{{ item }}"
         owner: "{{ user }}"
         group: "{{ user }}"
         mode: 0644
@@ -63,7 +63,7 @@
 
     - name: "Set icon to be hidden"
       ansible.builtin.lineinfile:
-        path: "/home/{{ user }}/.local/share/applications/{{ item }}"
+        path: "{{ user_home }}/.local/share/applications/{{ item }}"
         line: "NoDisplay=true"
         regex: "^NoDisplay=true"
         state: "present"

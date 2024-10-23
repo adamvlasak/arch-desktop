@@ -10,8 +10,8 @@
     group: "{{ user }}"
     mode: 0755
   loop:
-    - "/home/{{ user }}/.vim/autoload"
-    - "/home/{{ user }}/.vim/plugged"
+    - "{{ user_home }}/.vim/autoload"
+    - "{{ user_home }}/.vim/plugged"
   tags:
     - vim
 
@@ -20,7 +20,7 @@
   become_user: "{{ user }}"
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "/home/{{ user }}/.vim/autoload/plug.vim"
+    dest: "{{ user_home }}/.vim/autoload/plug.vim"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0644

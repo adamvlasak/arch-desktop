@@ -1,6 +1,7 @@
 ---
 user: jdoe
 user_groups: ["wheel", "audio", "video", "tty", "input", "storage", "optical"]
+user_home: "/home/{{ user }}"
 hostname: hostname
 timezone: "Europe/Vienna"
 
