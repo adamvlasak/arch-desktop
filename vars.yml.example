@@ -6,7 +6,7 @@ hostname: hostname
 timezone: "Europe/Vienna"
 
 sans_font: "Cantarell"
-serif_font: "Libertinus Serif"
+serif_font: "Noto Serif"
 monospace_font: "Fira Code"
 font_size: 10
 
@@ -68,12 +68,12 @@ packages:
   - gnome-calculator
   - gnome-podcasts
   - gnome-shell
-  - gnome-terminal
   - gnome-tweaks
   - go
   - grub
   - intel-ucode
   - irqbalance
+  - kitty
   - lame
   - make
   - man-db
