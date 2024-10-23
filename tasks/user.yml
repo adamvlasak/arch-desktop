@@ -15,6 +15,7 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0644
+  notify: Generate fontconfig cache
   tags:
     - gnome
     - fonts

@@ -15,3 +15,9 @@
 
     - name: Import vim tasks
       ansible.builtin.import_tasks: tasks/vim.yml
+
+  handlers:
+    - name: Generate fontconfig cache
+      ansible.builtin.command: fc-cache -vf
+      register: fontconfig_generate
+      changed_when: false
