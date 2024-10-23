@@ -1,6 +1,7 @@
 ---
 - name: Setup arch linux desktop
   hosts: localhost
+  become: true
   vars_files:
     - vars.yml
   tasks:
