@@ -14,6 +14,19 @@
     </alias>
 {% endfor %}
 
+    <!-- fix Fira Code Bold -->
+    <match target="pattern">
+        <test qual="any" name="family">
+            <string>Fira Code Bold</string>
+        </test>
+        <edit name="family" binding="same" mode="prepend">
+            <string>Fira Code</string>
+        </edit>
+        <edit name="weight" binding="same" mode="prepend">
+            <const>bold</const>
+        </edit>
+    </match>
+
     <!-- Aliases for serif, sans-serif and monospace. -->
     <alias>
         <family>serif</family>
