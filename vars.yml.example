@@ -44,6 +44,21 @@ gnome_dconf_settings:
 
 fontconfig_symlinks: []
 
+fontconfig_preferred_fonts:
+  - { family: "Arial", preferred: "{{ sans_font }}", generic: "sans-serif" }
+  - { family: "Helvetica", preferred: "{{ sans_font }}", generic: "sans-serif" }
+  - { family: "Tahoma", preferred: "{{ sans_font }}", generic: "sans-serif" }
+  - { family: "Verdana", preferred: "{{ sans_font }}", generic: "sans-serif" }
+  - { family: "Cambria", preferred: "{{ sans_font }}", generic: "sans-serif" }
+  - { family: "Calibri", preferred: "{{ sans_font }}", generic: "sans-serif" }
+  - { family: "Times", preferred: "{{ serif_font }}", generic: "serif" }
+  - { family: "Times New Roman", preferred: "{{ serif_font }}", generic: "serif" }
+  - { family: "Georgia", preferred: "{{ serif_font }}", generic: "serif" }
+  - { family: "Courier", preferred: "{{ monospace_font }}", generic: "monospace" }
+  - { family: "Courier New", preferred: "{{ monospace_font }}", generic: "monospace" }
+  - { family: "Consolas", preferred: "{{ monospace_font }}", generic: "monospace" }
+  - { family: "Monaco", preferred: "{{ monospace_font }}", generic: "monospace" }
+
 absent_desktop_icons: []
 
 system_services:
