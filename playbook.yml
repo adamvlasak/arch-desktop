@@ -19,7 +19,7 @@
 
   handlers:
     - name: Generate fontconfig cache
-      ansible.builtin.command: fc-cache -vf
+      ansible.builtin.command: fc-cache -vrf
       register: fontconfig_generate
       changed_when: false
       become: true
