@@ -1,0 +1,25 @@
+---
+- name: vim | Prepare vim plug directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  loop:
+    - "{{ user_home }}/.vim/autoload"
+    - "{{ user_home }}/.vim/plugged"
+  tags:
+    - vim
+
+- name: vim | Install vim-plug
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ user_home }}/.vim/autoload/plug.vim"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  when: not ansible_check_mode
+  tags:
+    - vim

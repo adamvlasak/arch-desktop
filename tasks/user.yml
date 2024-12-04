@@ -1,0 +1,81 @@
+---
+- name: Make user part of important groups
+  ansible.builtin.user:
+    name: "{{ user }}"
+    group: "{{ user }}"
+    groups: "{{ user_groups }}"
+  become: true
+  tags:
+    - user
+
+- name: Prepare .config/fontconfig
+  ansible.builtin.file:
+    path: "{{ user_home }}/.config/fontconfig"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  tags:
+    - fonts
+
+- name: Configure fontconfig
+  ansible.builtin.template:
+    src: fontconfig.j2
+    dest: "{{ user_home }}/.config/fontconfig/fonts.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  notify: Generate fontconfig cache
+  tags:
+    - fonts
+
+- name: Create fontconfig preset symlinks
+  ansible.builtin.file:
+    src: "/usr/share/fontconfig/conf.default/{{ item }}"
+    dest: "/etc/fonts/conf.d/{{ item }}"
+    state: link
+    force: true
+  notify: Generate fontconfig cache
+  loop: "{{ fontconfig_symlinks }}"
+  when:
+    - fontconfig_symlinks is defined
+    - fontconfig_symlinks is iterable
+  tags:
+    - fonts
+
+- name: Remove desktop icons
+  when:
+    - absent_desktop_icons is defined
+    - absent_desktop_icons is iterable
+  tags:
+    - gnome
+    - desktop-icons
+  block:
+    - name: "Copy desktop icon to .local/share/applications"
+      ansible.builtin.copy:
+        src: "/usr/share/applications/{{ item }}"
+        dest: "{{ user_home }}/.local/share/applications/{{ item }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0644
+        remote_src: true
+      loop: "{{ absent_desktop_icons }}"
+
+    - name: "Set icon to be hidden"
+      ansible.builtin.lineinfile:
+        path: "{{ user_home }}/.local/share/applications/{{ item }}"
+        line: "NoDisplay=true"
+        regex: "^NoDisplay=true"
+        state: "present"
+      loop: "{{ absent_desktop_icons }}"
+
+- name: Configure gnome using dconf
+  become: true
+  become_user: "{{ user }}"
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ gnome_dconf_settings }}"
+  tags:
+    - gnome

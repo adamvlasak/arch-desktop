@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+<fontconfig>
+    <!-- fix Fira Code Bold -->
+    <match target="pattern">
+        <test qual="any" name="family">
+            <string>Fira Code Bold</string>
+        </test>
+        <edit name="family" binding="same" mode="prepend">
+            <string>Fira Code</string>
+        </edit>
+        <edit name="weight" binding="same" mode="prepend">
+            <const>bold</const>
+        </edit>
+    </match>
+
+    <!-- Aliases for serif, sans-serif and monospace. -->
+    <alias>
+        <family>serif</family>
+        <prefer>
+            <family>{{ serif_font }}</family>
+            <family>Noto Color Emoji</family>
+        </prefer>
+    </alias>
+    <alias>
+        <family>sans-serif</family>
+        <prefer>
+            <family>{{ sans_font }}</family>
+            <family>Noto Color Emoji</family>
+        </prefer>
+    </alias>
+    <alias>
+        <family>monospace</family>
+        <prefer>
+            <family>{{ monospace_font }}</family>
+            <family>Noto Color Emoji</family>
+        </prefer>
+    </alias>
+</fontconfig>

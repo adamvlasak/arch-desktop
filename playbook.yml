@@ -1,0 +1,26 @@
+---
+- name: Setup arch linux desktop
+  hosts: localhost
+  become: true
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Import system tasks
+      ansible.builtin.import_tasks: tasks/system.yml
+
+    - name: Import service tasks
+      ansible.builtin.import_tasks: tasks/services.yml
+
+    - name: Import user tasks
+      ansible.builtin.import_tasks: tasks/user.yml
+
+    - name: Import vim tasks
+      ansible.builtin.import_tasks: tasks/vim.yml
+
+  handlers:
+    - name: Generate fontconfig cache
+      ansible.builtin.command: fc-cache -vrf
+      register: fontconfig_generate
+      changed_when: false
+      become: true
+      become_user: "{{ user }}"

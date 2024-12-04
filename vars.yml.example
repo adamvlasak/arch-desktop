@@ -1,0 +1,107 @@
+---
+user: jdoe
+user_groups: ["wheel", "audio", "video", "tty", "input", "storage", "optical"]
+user_home: "/home/{{ user }}"
+hostname: hostname
+timezone: "Europe/Vienna"
+
+sans_font: "Cantarell"
+serif_font: "Noto Serif"
+monospace_font: "Fira Code"
+font_size: 10
+
+# hw video decoding
+# libva_driver: iHD
+# vdpau_driver: va_gl
+libva_driver: vdpau
+vdpau_driver: nvidia
+
+locales:
+  - en_US.UTF-8
+  - cs_CZ.UTF-8
+
+environment_vars:
+  - "VDPAU_DRIVER={{ vdpau_driver }}"
+  - "LIBVA_DRIVER_NAME={{ libva_driver }}"
+
+gnome_dconf_settings:
+  - { key: "/org/gnome/desktop/interface/clock-show-seconds", value: "false" }
+  - { key: "/org/gnome/desktop/interface/clock-show-weekday", value: "true" }
+  - { key: "/org/gnome/desktop/interface/document-font-name", value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/desktop/interface/font-name", value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/desktop/interface/monospace-font-name", value: "'{{ monospace_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/desktop/notifications/show-in-lock-screen", value: "false" }
+  - { key: "/org/gnome/desktop/privacy/disable-camera", value: "true" }
+  - { key: "/org/gnome/desktop/privacy/disable-microphone", value: "false" }
+  - { key: "/org/gnome/desktop/privacy/remove-old-temp-files", value: "true" }
+  - { key: "/org/gnome/desktop/search-providers/disable-external", value: "false" }
+  - { key: "/org/gnome/desktop/sound/event-sounds", value: "false" }
+  - { key: "/org/gnome/desktop/wm/preferences/audible-bell", value: "false" }
+  - { key: "/org/gnome/desktop/wm/preferences/button-layout", value: "'appmenu:close'" }
+  - { key: "/org/gnome/desktop/wm/preferences/titlebar-font", value: "'{{ sans_font }} {{ font_size }}'" }
+  - { key: "/org/gnome/mutter/center-new-windows", value: "true" }
+  - { key: "/org/gnome/shell/disable-user-extensions", value: "true" }
+
+fontconfig_symlinks: []
+
+absent_desktop_icons: []
+
+system_services:
+  - gdm
+  - irqbalance
+
+masked_system_services: []
+
+user_services: []
+
+masked_user_services: []
+
+packages:
+  - btop
+  - celluloid
+  - evince
+  - fd
+  - ffmpeg
+  - firefox
+  - fish
+  - flac
+  - gdm
+  - git
+  - gnome-calculator
+  - gnome-podcasts
+  - gnome-shell
+  - gnome-tweaks
+  - go
+  - grub
+  - intel-ucode
+  - irqbalance
+  - kitty
+  - lame
+  - make
+  - man-db
+  - man-pages
+  - mc
+  - mesa
+  - nautilus
+  - net-tools
+  - networkmanager
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
+  - openssh
+  - openssl
+  - papirus-icon-theme
+  - plymouth
+  - ripgrep
+  - shortwave
+  - signal-desktop
+  - stow
+  - sudo
+  - tig
+  - tmux
+  - ttf-fira-code
+  - vim
+  - vulkan-intel
+  - vulkan-mesa-layers
+  - vulkan-tools
+  - wget
